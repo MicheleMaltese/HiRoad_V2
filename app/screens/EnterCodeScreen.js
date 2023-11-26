@@ -8,8 +8,8 @@ function EnterCodeScreen(props) {
   const handleSubmit = () => {
     // Replace this logic with your code verification logic.
     // For example, you can check if the entered code matches the expected code.
-    const expectedCode = "12345"; // Replace with your expected code
-    if (code === expectedCode) {
+    const expectedCode = ''; // Replace with your expected code
+    if (code === expectedCode && code !== '') {
       // Correct code, navigate to EnterNewPasswordScreen
       props.navigation.navigate("EnterNewPassword");
     } else {

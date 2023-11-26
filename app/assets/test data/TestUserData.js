@@ -92,6 +92,14 @@ function changeEmail(object) {
   currUser.email = object;
 }
 
+function changePhone(object) {
+  currUser.phone = object;
+}
+
+function changeFirstName(object) {
+  currUser.firstName = object;
+}
+
 function changePassword(object) {
   currUser.password = object;
 }
@@ -113,6 +121,10 @@ function deleteSocialPin(index) {
 //Deletes a pin from a specified map in currUser
 function deletePin(mapID, index) {
   currUser.maps[mapID].pins.splice(index, 1);
+}
+
+function deletePinSocial(index) {
+  currUser.socialMap.pins.splice(index, 1);
 }
 
 function deleteFriendRequest(index) {
@@ -324,7 +336,10 @@ function changeAddressSocial(object) {
 }
 
 export { addPin };
+export { changeFirstName };
+export { changePhone };
 export { deletePin };
+export { deletePinSocial };
 export { deletePinRequest };
 export { addRoute };
 export { deleteRoute };

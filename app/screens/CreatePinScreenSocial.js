@@ -377,8 +377,7 @@ function CreatePinScreenSocial(props) {
                                 style={styles.changePinButton}
                                 //Navigates user to pin icon selection screen, passes in the current pin's indexes
                                 onPress={() =>
-                                    props.navigation.navigate("Select Icon", {
-                                        mapId: props.route.params.mapId,
+                                    props.navigation.navigate("Select Icon Social", {
                                         id: props.route.params.id,
                                     })
                                 }

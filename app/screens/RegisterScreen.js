@@ -25,6 +25,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 let user = null;
 let nameError = "";
+let firstNameError = "";
 let phoneError = "";
 let emailError = "";
 let passwordError = "";
@@ -40,6 +41,7 @@ const DismissKeyboard = ({ children }) => (
 const handleRegister = async (
     props,
     name,
+    firstName,
     phone,
     email,
     password,
@@ -48,6 +50,7 @@ const handleRegister = async (
 ) => {
     try {
         let nameValid = false;
+        let firstNameValid = false;
         let phoneValid = false;
         let emailValid = false;
         let passwordValid = false;
@@ -59,6 +62,12 @@ const handleRegister = async (
             nameValid = true;
         } else {
             nameError = "Please enter a name.";
+        }
+        if (firstName.length > 0) {
+            firstNameError = "";
+            firstNameValid = true;
+        } else {
+            firstNameError = "Please enter a name.";
         }
         // Check if someone entered a phone number
         if (phone.length > 9) {
@@ -98,6 +107,7 @@ const handleRegister = async (
         //If all inputs are valid, the the user is created and added to the database
         if (
             nameValid &&
+            firstNameValid &&
             emailSame &&
             phoneValid &&
             passwordSame &&
@@ -106,6 +116,7 @@ const handleRegister = async (
         ) {
             await axios.post(URIs[0], {
                 name: name,
+                firstName : firstName,
                 email: email,
                 password: password,
                 phone: phone
@@ -130,6 +141,7 @@ function validate_password(password) {
 
 function RegisterScreen(props) {
     const [name, setName] = useState("");
+    const [firstName, setFirstName] = useState("");
     const [phone, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
     const [confEmail, setConfEmail] = useState("");
@@ -169,6 +181,7 @@ function RegisterScreen(props) {
 
     // Use states for errors
     const [nameErrorMsg, setNameErrorMsg] = useState("");
+    const [firstNameErrorMsg, setFirstNameErrorMsg] = useState("");
     const [phoneErrorMsg, setPhoneErrorMsg] = useState("");
     const [emailErrorMsg, setEmailErrorMsg] = useState("");
     const [confEmailErrorMsg, setConfEmailErrorMsg] = useState("");
@@ -177,6 +190,7 @@ function RegisterScreen(props) {
 
     // Refs to handle user flow through text inputs
     const ref_emailInput = useRef();
+    const ref_firstNameInput = useRef();
     const ref_phoneInput = useRef();
     const ref_confirmEmailInput = useRef(0);
     const ref_passwordInput = useRef();
@@ -185,6 +199,9 @@ function RegisterScreen(props) {
     useEffect(() => {
         // handle conditional formatting of name error
         if (name.length > 0) {
+            setNameErrorMsg("");
+        }
+        if (firstName.length > 0) {
             setNameErrorMsg("");
         }
         // handle conditional formatting of phone number error
@@ -210,6 +227,7 @@ function RegisterScreen(props) {
         }
     }, [
         name,
+        firstName,
         email,
         confEmail,
         emailsMatch,
@@ -254,7 +272,7 @@ function RegisterScreen(props) {
                                 autoCorrect={false}
                                 returnKeyType="next"
                                 onSubmitEditing={() => {
-                                    ref_phoneInput.current.focus();
+                                    ref_firstNameInput.current.focus();
                                 }}
                                 blurOnSubmit={false}
                             />
@@ -262,6 +280,34 @@ function RegisterScreen(props) {
                             {nameError.length > 0 && nameErrorMsg.length > 0 ? (
                                 <Text style={styles.errorText}>
                                     {nameError}
+                                </Text>
+                            ) : null}
+                        </View>
+                        {/* User enters first name here */}
+                        <View style={styles.textInputView}>
+                            <Text
+                                style={styles.inputLabel}
+                                maxFontSizeMultiplier={1.25}
+                            >
+                                What's your first name?
+                            </Text>
+                            <TextInput
+                                style={styles.input}
+                                ref={ref_firstNameInput}
+                                multiline={false}
+                                onChangeText={setFirstName}
+                                value={firstName}
+                                autoCorrect={false}
+                                returnKeyType="next"
+                                onSubmitEditing={() => {
+                                    ref_phoneInput.current.focus();
+                                }}
+                                blurOnSubmit={false}
+                            />
+                            {/* Show error message below name input if necessary */}
+                            {firstNameError.length > 0 && firstNameErrorMsg.length > 0 ? (
+                                <Text style={styles.errorText}>
+                                    {firstNameError}
                                 </Text>
                             ) : null}
                         </View>
@@ -485,6 +531,7 @@ function RegisterScreen(props) {
                                 await handleRegister(
                                     props,
                                     name,
+                                    firstName,
                                     phone,
                                     email,
                                     password,
@@ -494,6 +541,7 @@ function RegisterScreen(props) {
                                 // If all inputs are valid, reset all text inputs and update error messages
                                 if (
                                     nameError.length <= 0 &&
+                                    firstNameError.length <= 0 &&
                                     phoneError.length <= 0 &&
                                     emailError.length <= 0 &&
                                     confEmailError.length <= 0 &&
@@ -501,6 +549,7 @@ function RegisterScreen(props) {
                                     confPasswordError.length <= 0
                                 ) {
                                     setName("");
+                                    setFirstName("");
                                     setPhoneNumber("");
                                     setEmail("");
                                     setPassword("");
@@ -513,6 +562,12 @@ function RegisterScreen(props) {
                                     setNameErrorMsg("Please enter a name.");
                                 } else {
                                     setNameErrorMsg("");
+                                }
+                                if (firstNameError.length > 0) {
+                                    setFirstName("");
+                                    setFirstNameErrorMsg("Please enter a first name.");
+                                } else {
+                                    setFirstNameErrorMsg("");
                                 }
                                 if (phoneError.length > 0) {
                                     setName("");

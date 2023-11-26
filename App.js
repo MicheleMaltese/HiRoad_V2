@@ -16,6 +16,7 @@ import CreateRouteScreen from "./app/screens/CreateRouteScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SelectIconScreen from "./app/screens/SelectIconScreen";
+import SelectIconScreenSocial from "./app/screens/SelectIconScreenSocial";
 import AccountSettingsScreen from "./app/screens/AccountSettingsScreen";
 import EnterCodeScreen from "./app/screens/EnterCodeScreen";
 import EnterNewPasswordScreen from "./app/screens/EnterNewPasswordScreen";
@@ -135,6 +136,15 @@ export default class App extends React.Component {
             <Stack.Screen
               name="Select Icon"
               component={SelectIconScreen}
+              options={{
+                title: "",
+                headerTransparent: true,
+                headerTintColor: "#F3E9D9",
+              }}
+            />
+            <Stack.Screen
+              name="Select Icon Social"
+              component={SelectIconScreenSocial}
               options={{
                 title: "",
                 headerTransparent: true,

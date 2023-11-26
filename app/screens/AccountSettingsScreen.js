@@ -24,6 +24,8 @@ import {
     getUser,
     updateCurrUser,
     changeUsername,
+    changePhone,
+    changeFirstName,
     changeEmail,
     changePassword,
 } from "../assets/test data/TestUserData";
@@ -36,9 +38,13 @@ function AccountSettingsScreen(props) {
 
     const [nameEditable, setNameEditable] = useState(false);
     const [emailEditable, setEmailEditable] = useState(false);
+    const [phoneEditable, setPhoneEditable] = useState(false);
+    const [firstNameEditable, setFirstNameEditable] = useState(false);
     const [passwordEditable, setPasswordEditable] = useState(false);
 
     const [name, setName] = useState(currUser.name);
+    const [firstName, setFirstName] = useState(currUser.firstName);
+    const [phone, setPhone] = useState(currUser.phone);
     const [email, setEmail] = useState(currUser.email);
     const [newPassword, setNewPassword] = useState(null);
     const [password, setPassword] = useState(null);
@@ -49,6 +55,8 @@ function AccountSettingsScreen(props) {
     const QUESTION_EMAIL_SUBJECT_LINE = "Question";
 
     const ref_nameInput = useRef();
+    const ref_firstNameInput = useRef();
+    const ref_phoneInput = useRef();
     const ref_emailInput = useRef();
     const ref_newPasswordInput = useRef();
     const ref_currentPasswordInput = useRef();
@@ -63,6 +71,22 @@ function AccountSettingsScreen(props) {
                     saved = true;
                 } else {
                     Alert.alert("Error!", "Must provide name to change");
+                }
+            }
+            if (firstNameEditable) {
+                if (firstName.length > 0) {
+                    changeFirstName(firstName);
+                    saved = true;
+                } else {
+                    Alert.alert("Error!", "Must provide first name to change");
+                }
+            }
+            if (phoneEditable) {
+                if (phone.length > 9) {
+                    changePhone(phone);
+                    saved = true;
+                } else {
+                    Alert.alert("Error!", "Must provide valid phone number");
                 }
             }
             if (emailEditable) {
@@ -90,7 +114,9 @@ function AccountSettingsScreen(props) {
             try {
                 await updateUserInfo(oldEmail);
                 setNameEditable(false);
+                setFirstNameEditable(false);
                 setEmailEditable(false);
+                setPhoneEditable(false);
                 setPasswordEditable(false);
                 if (saved) {
                     Alert.alert("Success!", "Changed saved!");
@@ -113,12 +139,12 @@ function AccountSettingsScreen(props) {
     };
 
     useEffect(() => {
-        if (nameEditable || emailEditable || passwordEditable) {
+        if (nameEditable || firstNameEditable || emailEditable || phoneEditable || passwordEditable) {
             setEditMode(true);
         } else {
             setEditMode(false);
         }
-    }, [nameEditable, emailEditable, passwordEditable]);
+    }, [nameEditable, firstNameEditable, emailEditable, phoneEditable, passwordEditable]);
     return (
         <SafeAreaView style={styles.background}>
             <ScrollView contentContainerStyle={styles.backgroundContainerStyle}>
@@ -267,6 +293,66 @@ function AccountSettingsScreen(props) {
                     </View>
                     <View style={styles.itemContainer}>
                         <View style={styles.labelContainer}>
+                            <Text style={styles.inputLabel}>First Name</Text>
+                            <Icon
+                                style={{ alignSelf: "flex-end" }}
+                                color={firstNameEditable ? "#008EC2" : "#548439"}
+                                type="material"
+                                name="edit"
+                                onPress={() => {
+                                    setFirstNameEditable(!firstNameEditable);
+                                    setFirstNameEditable
+                                        ? setFirstName(currUser.firstName)
+                                        : setFirstName(firstName);
+                                }}
+                            />
+                        </View>
+                        <TextInput
+                            style={
+                                firstNameEditable ? styles.input : styles.hiddenInput
+                            }
+                            ref={ref_firstNameInput}
+                            defaultValue={firstName}
+                            onChangeText={setFirstName}
+                            editable={firstNameEditable}
+                            onSubmitEditing={() => {
+                                ref_currentPasswordInput.current.focus();
+                            }}
+                            returnKeyType="done"
+                        />
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <View style={styles.labelContainer}>
+                            <Text style={styles.inputLabel}>Phone</Text>
+                            <Icon
+                                style={{ alignSelf: "flex-end" }}
+                                color={phoneEditable ? "#008EC2" : "#548439"}
+                                type="material"
+                                name="edit"
+                                onPress={() => {
+                                    setPhoneEditable(!phoneEditable);
+                                    setPhoneEditable
+                                        ? setPhone(currUser.phone)
+                                        : setPhone(phone);
+                                }}
+                            />
+                        </View>
+                        <TextInput
+                            style={
+                                phoneEditable ? styles.input : styles.hiddenInput
+                            }
+                            ref={ref_phoneInput}
+                            defaultValue={phone}
+                            onChangeText={setPhone}
+                            editable={phoneEditable}
+                            onSubmitEditing={() => {
+                                ref_currentPasswordInput.current.focus();
+                            }}
+                            returnKeyType="done"
+                        />
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <View style={styles.labelContainer}>
                             <Text style={styles.inputLabel}>Email</Text>
                             <Icon
                                 style={{ alignSelf: "flex-end" }}
@@ -335,7 +421,7 @@ function AccountSettingsScreen(props) {
                             </Text>
                         ) : null}
                     </View>
-                    {nameEditable || emailEditable || passwordEditable ? (
+                    {nameEditable || firstNameEditable || phoneEditable || emailEditable || passwordEditable ? (
                         <View style={styles.existingPasswordContainer}>
                             <View style={styles.labelContainer}>
                                 <Text style={styles.existingPasswordInputLabel}>
