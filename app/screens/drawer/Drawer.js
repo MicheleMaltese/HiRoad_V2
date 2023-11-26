@@ -4,12 +4,13 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import MapViewScreen from "../MapViewScreen";
 import LogoutScreen from "../LogoutScreen";
 import AccountSettingsScreen from "../AccountSettingsScreen";
-import AddFriendsScreen from '../AddFriendsScreen'; // Screen for Adding Friends
-import EditFriendsScreen from '../EditFriendsScreen'; // Screen for Editing Friend List
-import AcceptFriendsScreen from '../AcceptFriendsScreen'; // Screen for Accepting Friends
-import ExportMapsScreen from '../ExportMapsScreen'; // Placeholder for Export Maps
-import AcceptMapsScreen from '../AcceptMapsScreen'; // Placeholder for Accept Maps
-
+import AddFriendsScreen from '../AddFriendsScreen'; 
+import EditFriendsScreen from '../EditFriendsScreen'; 
+import AcceptFriendsScreen from '../AcceptFriendsScreen'; 
+import ExportMapsScreen from '../ExportMapsScreen'; 
+import AcceptMapsScreen from '../AcceptMapsScreen'; 
+import ExportPinsScreen from '../ExportPinsScreen.js'; 
+import AcceptPinsScreen from '../AcceptPinsScreen'; 
 const Drawer = createDrawerNavigator();
 
 //FIXME: As of right now, none of the pages in this drawer are necessary in this drawer.
@@ -41,9 +42,11 @@ export default function MyDrawer() {
             <Drawer.Screen name="Home" component={MapViewScreen} />
             <Drawer.Screen name="Add Friends" component={AddFriendsScreen} />
             <Drawer.Screen name="Edit Friends" component={EditFriendsScreen} />
-            <Drawer.Screen name="Accept Friends" component={AcceptFriendsScreen} />
+            <Drawer.Screen name="Accept Friends" component={AcceptFriendsScreen} options={{ title: 'Accept Friend Requests' }} />
             <Drawer.Screen name="Export Maps" component={ExportMapsScreen} options={{ title: 'Export Maps' }} />
-            <Drawer.Screen name="Accept Maps" component={AcceptMapsScreen} options={{ title: 'Accept Maps' }} />
+            <Drawer.Screen name="Accept Maps" component={AcceptMapsScreen} options={{ title: 'Accept Map Requests' }} />
+            <Drawer.Screen name="Export Pins" component={ExportPinsScreen} options={{ title: 'Export Pins' }} />
+            <Drawer.Screen name="Accept Pins" component={AcceptPinsScreen} options={{ title: 'Accept Pin Requests' }} />
             <Drawer.Screen
                 name="Settings"
                 component={AccountSettingsScreen}

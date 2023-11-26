@@ -22,6 +22,9 @@ import EnterNewPasswordScreen from "./app/screens/EnterNewPasswordScreen";
 import SocialMapScreen from "./app/screens/SocialMapScreen";
 import ARValidationScreen from "./app/screens/ARValidationScreen";
 import FriendSelectScreen from "./app/screens/FriendSelectScreen";
+import SelectPinExportScreen from "./app/screens/SelectPinExportScreen";
+import FriendSelectScreenPin from "./app/screens/PinForFriendScreen";
+import PinTransferFinalizeScreen from "./app/screens/PinTransferFinalizeScreen";
 //import ArScreen from "./app/screens/ArScreen";
 
 const Stack = createNativeStackNavigator();
@@ -199,6 +202,42 @@ export default class App extends React.Component {
               component={FriendSelectScreen}
               options={{
                 title: "Select Friend",
+                // Adjust these styles to match your app's theme
+                headerStyle: {
+                  backgroundColor: "#FCF9F4",
+                },
+                headerTintColor: "#6C3A2C",
+              }}
+            />
+            <Stack.Screen
+              name="PinSelect"
+              component={SelectPinExportScreen}
+              options={{
+                title: "Select Pin",
+                // Adjust these styles to match your app's theme
+                headerStyle: {
+                  backgroundColor: "#FCF9F4",
+                },
+                headerTintColor: "#6C3A2C",
+              }}
+            />
+            <Stack.Screen
+              name="FriendSelectPin"
+              component={FriendSelectScreenPin}
+              options={{
+                title: "Select Friend for Pin Export",
+                // Adjust these styles to match your app's theme
+                headerStyle: {
+                  backgroundColor: "#FCF9F4",
+                },
+                headerTintColor: "#6C3A2C",
+              }}
+            />
+            <Stack.Screen
+              name="PinTransferFinalizeScreen"
+              component={PinTransferFinalizeScreen}
+              options={{
+                title: "Finalize Pin Export",
                 // Adjust these styles to match your app's theme
                 headerStyle: {
                   backgroundColor: "#FCF9F4",

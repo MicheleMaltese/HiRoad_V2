@@ -13,7 +13,7 @@ import { Icon } from "react-native-elements";
 import { currUser } from "../assets/test data/TestUserData.js";
 import { useNavigation } from "@react-navigation/native";
 
-function ExportMapsScreen() {
+function ExportPinsScreen() {
   const [maps, setMaps] = useState(currUser.maps);
   const navigation = useNavigation();
 
@@ -24,13 +24,13 @@ function ExportMapsScreen() {
 
   const handleMapSelect = (selectedIndex) => {
     console.log(selectedIndex);
-    navigation.navigate("FriendSelect", { selectedMap: selectedIndex  });
+    navigation.navigate("PinSelect", { selectedMap: selectedIndex  });
   };
 
   return (
     <SafeAreaView style={styles.background}>
       <View style={styles.container}>
-      <Text style={styles.mapHeader}>{"Export a Map to a Friend!"}</Text>
+      <Text style={styles.mapHeader}>{"Select a Map Whose Pin You'd Like to Export!"}</Text>
       <ScrollView style={styles.scrollView}>
         {maps.map((map, index) => (
           <View key={index}>
@@ -141,4 +141,4 @@ mapButton: {
 });
 
 
-export default ExportMapsScreen;
+export default ExportPinsScreen;

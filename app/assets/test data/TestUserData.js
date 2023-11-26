@@ -45,7 +45,6 @@ async function exportPin(name, mapIndex, index, msg, friendPhone) {
 
 async function acceptPin(email, index) {
   await axios.post(URIs[7], {email: email, pin: currUser.tempObjects.tempPins[index]});
-  deletePinRequest(index);
 }
 
 //Sets the currUser object to the passed in data. Used for putting the user's data in currUser, called when logging in
@@ -120,6 +119,10 @@ function deleteFriendRequest(index) {
   currUser.tempObjects.friendRequests.splice(index, 1);
 }
 
+function deleteFriend(index) {
+  currUser.friendsList.splice(index, 1);
+}
+
 function deletePinRequest(index) {
   currUser.tempObjects.tempPins.splice(index, 1);
 }
@@ -135,7 +138,6 @@ function acceptFriendRequest(index) {
 
   console.log(acceptedRequest);
 
-  deleteFriendRequest(index);
   currUser.friendsList.push(acceptedRequest);
   console.log(currUser);
 }
@@ -148,7 +150,6 @@ function acceptMapRequest(index) {
   console.log(currUser);
   let tempRequest = currUser.tempObjects.tempMaps[index];
 
-  deleteMapRequest(index);
   currUser.maps.push(tempRequest);
   console.log(currUser);
 }
@@ -324,6 +325,7 @@ function changeAddressSocial(object) {
 
 export { addPin };
 export { deletePin };
+export { deletePinRequest };
 export { addRoute };
 export { deleteRoute };
 export { deleteMap };
@@ -356,6 +358,7 @@ export { postUserResetPassword };
 export { addFriend };
 export { acceptFriendRequest };
 export { deleteFriendRequest };
+export { deleteFriend };
 export { exportMap };
 export { deleteMapRequest };
 export { acceptMapRequest };

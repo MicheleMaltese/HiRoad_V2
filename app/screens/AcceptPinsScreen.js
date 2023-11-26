@@ -7,26 +7,26 @@ import {
     acceptFriendRequest,
     deleteFriendRequest,
     updateUserInfo,
-    acceptMapRequest,
-    deleteMapRequest
+    acceptPin,
+    deletePinRequest
 } from "../assets/test data/TestUserData";
 
-const MapRequestItem = ({ mapRequest, onAccept, onDecline }) => (
-  <View key={mapRequest.id} style={styles.mapRequestItem}>
-      <Text style={styles.mapRequestName}>{'Map Name: ' + mapRequest.mapName + '\nFrom: ' + mapRequest.fromName}</Text>
+const PinRequestItem = ({ pinRequest, onAccept, onDecline }) => (
+  <View key={pinRequest.id} style={styles.pinRequestItem}>
+      <Text style={styles.pinRequestName}>{'Pin Name: ' + pinRequest.label + '\nFrom: ' + pinRequest.fromName}</Text>
     <View style={styles.buttonsContainer}>
-    <TouchableOpacity onPress={() => onAccept(mapRequest.id)} style={styles.acceptButton}>
+    <TouchableOpacity onPress={() => onAccept(pinRequest.id)} style={styles.acceptButton}>
       <Text style={styles.acceptButtonText}>Accept</Text>
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => onDecline(mapRequest.id)} style={styles.deleteButton}>
+    <TouchableOpacity onPress={() => onDecline(pinRequest.id)} style={styles.deleteButton}>
       <Text style={styles.deleteButtonText}>Decline</Text>
     </TouchableOpacity>
     </View>
   </View>
 );
 
-const AcceptMapsScreen = (props) => {
-  const [mapRequests, setMapRequests] = useState(currUser.tempObjects.tempMaps);
+const AcceptPinsScreen = (props) => {
+  const [pinRequests, setPinRequests] = useState(currUser.tempObjects.tempPins);
 
     const addIdToObjects = (array) => {
     return array.map((obj, index) => {
@@ -35,42 +35,42 @@ const AcceptMapsScreen = (props) => {
   };
 
   useEffect(() => {
-    setMapRequests(addIdToObjects(mapRequests));
-    console.log(mapRequests);
+    setPinRequests(addIdToObjects(pinRequests));
+    console.log(pinRequests);
   }, []); // Run only once when the component mounts
 
 
-  const handleDeclineMapRequest = useCallback((mapRequestId) => {
-    let name = mapRequests[parseInt(mapRequestId)].fromName;
-    deleteMapRequest(parseInt(mapRequestId));
-    Alert.alert('Map Request Declined', `You have declined the map request from ${name}.`);
+  const handleDeclinePinRequest = useCallback((pinRequestId) => {
+    let name = pinRequests[parseInt(pinRequestId)].fromName;
+    deletePinRequest(parseInt(pinRequestId));
+    Alert.alert('Pin Request Declined', `You have declined the pin request from ${name}.`);
 
     updateUserInfo();
-    setMapRequests(addIdToObjects(currUser.tempObjects.tempMaps));
-  }, [mapRequests]);
+    setPinRequests(addIdToObjects(currUser.tempObjects.tempPins));
+  }, [pinRequests]);
 
-  const handleAcceptMapRequest = useCallback((mapRequestId) => {
-    let name = mapRequests[parseInt(mapRequestId)].fromName;
-    acceptMapRequest(parseInt(mapRequestId));
-    deleteMapRequest(parseInt(mapRequestId));
-    Alert.alert('Map Request Accepted', `You have accepted the map request from ${name}. Log back in to see your updated map list`);
+  const handleAcceptPinRequest = useCallback((pinRequestId) => {
+    let name = pinRequests[parseInt(pinRequestId)].fromName;
+    acceptPin(currUser.email, parseInt(pinRequestId));
+    deletePinRequest(parseInt(pinRequestId));
+    Alert.alert('Pin Request Accepted', `You have accepted the pin request from ${name}. Log back in to see your updated pin list`);
 
     updateUserInfo();
-    setMapRequests(addIdToObjects(currUser.tempObjects.tempMaps));
-  }, [mapRequests]);
+    setPinRequests(addIdToObjects(currUser.tempObjects.tempPins));
+  }, [pinRequests]);
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={mapRequests}
+        data={pinRequests}
         renderItem={({ item }) => (
-          <MapRequestItem
-            mapRequest={item}
-            onAccept={handleAcceptMapRequest}
-            onDecline={handleDeclineMapRequest}
+          <PinRequestItem
+            pinRequest={item}
+            onAccept={handleAcceptPinRequest}
+            onDecline={handleDeclinePinRequest}
           />
         )}
-        ListEmptyComponent={<Text style={styles.noMapRequestText}>No map requests.</Text>}
+        ListEmptyComponent={<Text style={styles.noPinRequestText}>No pin requests.</Text>}
       />
     </View>
   );
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     paddingTop: 22,
     backgroundColor: '#FCF9F4', // Background color from your theme
   },
-  mapRequestItem: {
+  pinRequestItem: {
     flexDirection: 'row',
     padding: 10,
     borderBottomWidth: 1,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  mapRequestName: {
+  pinRequestName: {
     fontSize: 18,
     color: '#6C3A2C', // Text color from your theme
     fontFamily: 'Avenir-Roman', // Font from your theme
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
-    noMapRequestText: {
+    noPinRequestText: {
     fontSize: 18,
     color: '#6C3A2C',
     fontFamily: 'Avenir-Book',
@@ -138,4 +138,4 @@ const styles = StyleSheet.create({
   },  
 });
 
-export default AcceptMapsScreen;
+export default AcceptPinsScreen;

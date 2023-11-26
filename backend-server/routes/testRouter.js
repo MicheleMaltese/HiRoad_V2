@@ -142,13 +142,6 @@ router.post("/addfriend", (req, res) => {
     });
   }
 
-  if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: "You must provide a body to update",
-    });
-  }
-
   console.log(user_phone);
 
   UserModel.findOne({ phone: friend_phone }, (err, user) => {
@@ -169,13 +162,24 @@ router.post("/addfriend", (req, res) => {
     let fr = user.friendsList;
 
     console.log(requests);
+    console.log(fr);
     console.log(friend_request);
 
-    if (requests.includes(friend_request) && fr.includes(friend_request)) {
-      requests.push(friend_request);
+    const requestExists = requests.filter(function (el) {
+      return el.name == friend_request.name &&
+        el.phone == friend_request.phone
+      });
+
+    const friendExists = fr.filter(function (el) {
+      return el.name == friend_request.name &&
+        el.phone == friend_request.phone
+      });
+
+    if (requestExists.length != 0 || friendExists.length != 0) {
+      console.log("Friend already requested/added")
     }
     else {
-      console.log("Friend already requested/added")
+      requests.push(friend_request);
     }
 
     user.tempObjects.friendRequests = requests;
@@ -206,13 +210,6 @@ router.post("/exportmap", (req, res) => {
   let user_map = body.map;
   const user_name = body.user_name;
 
-    if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: "You must provide a body to update",
-    });
-  }
-
   if (!body) {
     return res.status(400).json({
       success: false,
@@ -230,7 +227,7 @@ router.post("/exportmap", (req, res) => {
       });
     }
 
-    //console.log(user);
+    console.log(user_map);
 
     user_map.exported = true;
     user_map.fromName = user_name;
@@ -269,13 +266,6 @@ router.post("/exportpin", (req, res) => {
   const secret_message = body.secret_message;
 
     if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: "You must provide a body to update",
-    });
-  }
-
-  if (!body) {
     return res.status(400).json({
       success: false,
       error: "You must provide a body to update",

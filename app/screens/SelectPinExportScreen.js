@@ -13,32 +13,34 @@ import { Icon } from "react-native-elements";
 import { currUser } from "../assets/test data/TestUserData.js";
 import { useNavigation } from "@react-navigation/native";
 
-function ExportMapsScreen() {
-  const [maps, setMaps] = useState(currUser.maps);
+function SelectPinExportScreen(props) {
+  const mapIndex = props.route.params.selectedMap;
+  const [pins, setPins] = useState(currUser.maps[mapIndex].pins);
   const navigation = useNavigation();
 
   useEffect(() => {
     
-    setMaps(currUser.maps);
+    setPins(currUser.maps[mapIndex].pins);
   }, []);
 
-  const handleMapSelect = (selectedIndex) => {
-    console.log(selectedIndex);
-    navigation.navigate("FriendSelect", { selectedMap: selectedIndex  });
+  const handlePinSelect = (pinIndex) => {
+    console.log(mapIndex);
+    console.log(pinIndex);
+    navigation.navigate("FriendSelectPin", { selectedMap: mapIndex, selectedPin: pinIndex  });
   };
 
   return (
     <SafeAreaView style={styles.background}>
       <View style={styles.container}>
-      <Text style={styles.mapHeader}>{"Export a Map to a Friend!"}</Text>
+      <Text style={styles.pinHeader}>{"Select a Pin You'd Like to Export to a Friend!"}</Text>
       <ScrollView style={styles.scrollView}>
-        {maps.map((map, index) => (
+        {pins.map((pin, index) => (
           <View key={index}>
             <TouchableOpacity
-              style={styles.mapButton}
-              onPress={() => handleMapSelect(index)}
+              style={styles.pinButton}
+              onPress={() => handlePinSelect(index)}
             >
-              <Text style={styles.mapButtonText}>{map.mapName}</Text>
+              <Text style={styles.pinButtonText}>{pin.label}</Text>
             </TouchableOpacity>
           </View>
         ))}
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  mapHeader: {
+  pinHeader: {
     fontSize: 38,
     color: "#6C3A2C",
     fontFamily: "Avenir-Black",
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     justifyContent: "center"
   },
-  createMapButton: {
+  createPinButton: {
     width: "80%",
     flexDirection: "row",
     flexShrink: 0,
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: "5%",
   },
-    socialMapButton: {
+    socialPinButton: {
     width: "80%",
     flexDirection: "row",
     flexShrink: 0,
@@ -100,13 +102,13 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: "5%",
   },
-  createMapButtonText: {
+  createPinButtonText: {
     color: "#FCF9F4",
     fontFamily: "Avenir-Heavy",
     alignSelf: "flex-start",
     fontSize: 28,
   },
-mapButton: {
+pinButton: {
   width: Dimensions.get("window").width * 0.8,
   backgroundColor: "#548439",
   justifyContent: "center",
@@ -114,7 +116,7 @@ mapButton: {
   borderRadius: 10,
   marginVertical: 10,
 },
-  sharedMapButton: {
+  sharedPinButton: {
     width: "90%",
     backgroundColor: "#6C3A2C",
     justifyContent: "center",
@@ -122,7 +124,7 @@ mapButton: {
     marginTop: "2%",
     marginBottom: "2%",
   },
-  mapButtonText: {
+  pinButtonText: {
     color: "#FCF9F4",
     fontFamily: "Avenir-Light",
     alignSelf: "flex-start",
@@ -134,11 +136,11 @@ mapButton: {
     marginLeft: "1%",
     color: "#6C3A2C",
   },
-  map: {
+  pin: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height * 0.25,
   },
 });
 
 
-export default ExportMapsScreen;
+export default SelectPinExportScreen;

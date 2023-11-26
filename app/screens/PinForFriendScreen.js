@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import { currUser, exportMap } from "../assets/test data/TestUserData";
+import { useNavigation } from "@react-navigation/native";
 
 const FriendItem = ({ friend, onTransfer }) => (
   <View key={friend.id} style={styles.friendItem}>
@@ -12,10 +13,14 @@ const FriendItem = ({ friend, onTransfer }) => (
   </View>
 );
 
-const FriendSelectScreen = (props) => {
+const FriendSelectScreenPin = (props) => {
   const [friends, setFriends] = useState([]);
   const mapIndex = props.route.params.selectedMap;
+  const pinIndex = props.route.params.selectedPin;
   console.log(mapIndex);
+  console.log(pinIndex);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     setFriends(addIdToObjects(currUser.friendsList));
@@ -29,11 +34,11 @@ const FriendSelectScreen = (props) => {
 
   const handleSelectFriend = useCallback((friendId) => {
     const selectedFriend = friends.find(friend => friend.id === friendId);
+    console.log(selectedFriend);
     if (selectedFriend) {
-      exportMap(currUser.name, mapIndex, selectedFriend.phone);
-      Alert.alert('Map Transfer Attempted', `Your map has been attempted to be transferred to ${selectedFriend.name}`);
+        navigation.navigate("PinTransferFinalizeScreen", { selectedMap: mapIndex, selectedPin: pinIndex, friendPhone: selectedFriend.phone  });
     }
-  }, [friends, props.route.params.selectedMap]);
+  }, [friends, props.route.params.selectedMap, props.route.params.selectedPin]);
 
   return (
     <View style={styles.container}>
@@ -93,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FriendSelectScreen;
+export default FriendSelectScreenPin;
