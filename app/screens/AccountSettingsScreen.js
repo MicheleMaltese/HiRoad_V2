@@ -343,7 +343,13 @@ function AccountSettingsScreen(props) {
                             }
                             ref={ref_phoneInput}
                             defaultValue={phone}
-                            onChangeText={setPhone}
+                            value={phone}
+                            keyboardType="numeric"
+                            onChangeText={(text) => {
+                                // Allow only numbers and limit to 10 characters
+                                const formattedText = text.replace(/[^0-9]/g, '').slice(0, 10);
+                                setPhone(formattedText);
+                            }}
                             editable={phoneEditable}
                             onSubmitEditing={() => {
                                 ref_currentPasswordInput.current.focus();

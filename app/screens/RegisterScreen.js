@@ -323,8 +323,12 @@ function RegisterScreen(props) {
                                 style={styles.input}
                                 multiline={false}
                                 ref={ref_phoneInput}
-                                keyboardType="phone-pad"
-                                onChangeText={setPhoneNumber}
+                                keyboardType="numeric"
+                                onChangeText={(text) => {
+                                    // Allow only numbers and limit to 10 characters
+                                    const formattedText = text.replace(/[^0-9]/g, '').slice(0, 10);
+                                    setPhoneNumber(formattedText);
+                                }}
                                 value={phone}
                                 autoCorrect={false}
                                 returnKeyType="next"

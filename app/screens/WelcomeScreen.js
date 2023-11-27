@@ -25,7 +25,7 @@ function WelcomeScreen(props) {
             <View style={styles.logoContainer}>
                 <Image
                     style={{ width: logoWidth, height: logoHeight }}
-                    source={require("../assets/hiroad-logo-75.png")}
+                    source={require("../assets/HIROADSOCIAL2023logo.png")}
                 />
             </View>
             {/* Login Button */}
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#FCF9F4",
+        backgroundColor: "#FFFFFF",
     },
     logoContainer: {
         alignItems: "center",

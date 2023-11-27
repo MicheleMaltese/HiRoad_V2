@@ -11,6 +11,7 @@ import ExportMapsScreen from '../ExportMapsScreen';
 import AcceptMapsScreen from '../AcceptMapsScreen'; 
 import ExportPinsScreen from '../ExportPinsScreen.js'; 
 import AcceptPinsScreen from '../AcceptPinsScreen'; 
+import AboutScreen from '../AboutScreen';
 const Drawer = createDrawerNavigator();
 
 //FIXME: As of right now, none of the pages in this drawer are necessary in this drawer.
@@ -55,6 +56,7 @@ export default function MyDrawer() {
                 //     headerStyle: { backgroundColor: "#FCF9F4" },
                 // }}
             />
+            <Drawer.Screen name="About HiRoad Social" component={AboutScreen} options={{ title: 'About HiRoad Social' }} />
             <Drawer.Screen name="Log Out" component={LogoutScreen} />
         </Drawer.Navigator>
     );
