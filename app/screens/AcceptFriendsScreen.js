@@ -76,7 +76,7 @@ const AcceptFriendsScreen = (props) => {
             onDecline={handleDeclineFriendRequest}
           />
         )}
-        ListEmptyComponent={<Text style={styles.noFriendRequestText}>No friend requests.</Text>}
+        ListEmptyComponent={<Text style={styles.noFriendRequestText}>No Friend Requests.</Text>}
       />
     </View>
   );

@@ -96,8 +96,8 @@ function changePhone(object) {
   currUser.phone = object;
 }
 
-function changeFirstName(object) {
-  currUser.firstName = object;
+function changeFullName(object) {
+  currUser.fullName = object;
 }
 
 function changePassword(object) {
@@ -336,7 +336,7 @@ function changeAddressSocial(object) {
 }
 
 export { addPin };
-export { changeFirstName };
+export { changeFullName };
 export { changePhone };
 export { deletePin };
 export { deletePinSocial };

@@ -50,7 +50,7 @@ const FriendSelectScreenPin = (props) => {
             onTransfer={handleSelectFriend}
           />
         )}
-        ListEmptyComponent={<Text style={styles.noFriendsText}>No friends to display.</Text>}
+        ListEmptyComponent={<Text style={styles.noFriendsText}>No Friends To Display.</Text>}
       />
     </View>
   );

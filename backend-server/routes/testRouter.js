@@ -399,7 +399,7 @@ router.post("/userupdate/:id", (req, res) => {
     }
 
     user.name = currUser.name;
-    user.firstName = currUser.firstName;
+    user.fullName = currUser.fullName;
     user.email = currUser.email;
     user.phone = currUser.phone;
     user.friendsList = currUser.friendsList;

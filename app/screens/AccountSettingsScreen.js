@@ -25,7 +25,7 @@ import {
     updateCurrUser,
     changeUsername,
     changePhone,
-    changeFirstName,
+    changeFullName,
     changeEmail,
     changePassword,
 } from "../assets/test data/TestUserData";
@@ -39,11 +39,11 @@ function AccountSettingsScreen(props) {
     const [nameEditable, setNameEditable] = useState(false);
     const [emailEditable, setEmailEditable] = useState(false);
     const [phoneEditable, setPhoneEditable] = useState(false);
-    const [firstNameEditable, setFirstNameEditable] = useState(false);
+    const [fullNameEditable, setFullNameEditable] = useState(false);
     const [passwordEditable, setPasswordEditable] = useState(false);
 
     const [name, setName] = useState(currUser.name);
-    const [firstName, setFirstName] = useState(currUser.firstName);
+    const [fullName, setFullName] = useState(currUser.fullName);
     const [phone, setPhone] = useState(currUser.phone);
     const [email, setEmail] = useState(currUser.email);
     const [newPassword, setNewPassword] = useState(null);
@@ -55,7 +55,7 @@ function AccountSettingsScreen(props) {
     const QUESTION_EMAIL_SUBJECT_LINE = "Question";
 
     const ref_nameInput = useRef();
-    const ref_firstNameInput = useRef();
+    const ref_fullNameInput = useRef();
     const ref_phoneInput = useRef();
     const ref_emailInput = useRef();
     const ref_newPasswordInput = useRef();
@@ -73,12 +73,12 @@ function AccountSettingsScreen(props) {
                     Alert.alert("Error!", "Must provide name to change");
                 }
             }
-            if (firstNameEditable) {
-                if (firstName.length > 0) {
-                    changeFirstName(firstName);
+            if (fullNameEditable) {
+                if (fullName.length > 0) {
+                    changeFullName(fullName);
                     saved = true;
                 } else {
-                    Alert.alert("Error!", "Must provide first name to change");
+                    Alert.alert("Error!", "Must provide full name to change");
                 }
             }
             if (phoneEditable) {
@@ -114,7 +114,7 @@ function AccountSettingsScreen(props) {
             try {
                 await updateUserInfo(oldEmail);
                 setNameEditable(false);
-                setFirstNameEditable(false);
+                setFullNameEditable(false);
                 setEmailEditable(false);
                 setPhoneEditable(false);
                 setPasswordEditable(false);
@@ -139,12 +139,12 @@ function AccountSettingsScreen(props) {
     };
 
     useEffect(() => {
-        if (nameEditable || firstNameEditable || emailEditable || phoneEditable || passwordEditable) {
+        if (nameEditable || fullNameEditable || emailEditable || phoneEditable || passwordEditable) {
             setEditMode(true);
         } else {
             setEditMode(false);
         }
-    }, [nameEditable, firstNameEditable, emailEditable, phoneEditable, passwordEditable]);
+    }, [nameEditable, fullNameEditable, emailEditable, phoneEditable, passwordEditable]);
     return (
         <SafeAreaView style={styles.background}>
             <ScrollView contentContainerStyle={styles.backgroundContainerStyle}>
@@ -293,28 +293,28 @@ function AccountSettingsScreen(props) {
                     </View>
                     <View style={styles.itemContainer}>
                         <View style={styles.labelContainer}>
-                            <Text style={styles.inputLabel}>First Name</Text>
+                            <Text style={styles.inputLabel}>Full Name</Text>
                             <Icon
                                 style={{ alignSelf: "flex-end" }}
-                                color={firstNameEditable ? "#008EC2" : "#548439"}
+                                color={fullNameEditable ? "#008EC2" : "#548439"}
                                 type="material"
                                 name="edit"
                                 onPress={() => {
-                                    setFirstNameEditable(!firstNameEditable);
-                                    setFirstNameEditable
-                                        ? setFirstName(currUser.firstName)
-                                        : setFirstName(firstName);
+                                    setFullNameEditable(!fullNameEditable);
+                                    setFullNameEditable
+                                        ? setFullName(currUser.fullName)
+                                        : setFullName(fullName);
                                 }}
                             />
                         </View>
                         <TextInput
                             style={
-                                firstNameEditable ? styles.input : styles.hiddenInput
+                                fullNameEditable ? styles.input : styles.hiddenInput
                             }
-                            ref={ref_firstNameInput}
-                            defaultValue={firstName}
-                            onChangeText={setFirstName}
-                            editable={firstNameEditable}
+                            ref={ref_fullNameInput}
+                            defaultValue={fullName}
+                            onChangeText={setFullName}
+                            editable={fullNameEditable}
                             onSubmitEditing={() => {
                                 ref_currentPasswordInput.current.focus();
                             }}
@@ -421,7 +421,7 @@ function AccountSettingsScreen(props) {
                             </Text>
                         ) : null}
                     </View>
-                    {nameEditable || firstNameEditable || phoneEditable || emailEditable || passwordEditable ? (
+                    {nameEditable || fullNameEditable || phoneEditable || emailEditable || passwordEditable ? (
                         <View style={styles.existingPasswordContainer}>
                             <View style={styles.labelContainer}>
                                 <Text style={styles.existingPasswordInputLabel}>

@@ -70,7 +70,7 @@ const AcceptMapsScreen = (props) => {
             onDecline={handleDeclineMapRequest}
           />
         )}
-        ListEmptyComponent={<Text style={styles.noMapRequestText}>No map requests.</Text>}
+        ListEmptyComponent={<Text style={styles.noMapRequestText}>No Map Requests.</Text>}
       />
     </View>
   );

@@ -30,7 +30,7 @@ const FriendSelectScreen = (props) => {
   const handleSelectFriend = useCallback((friendId) => {
     const selectedFriend = friends.find(friend => friend.id === friendId);
     if (selectedFriend) {
-      exportMap(currUser.name, mapIndex, selectedFriend.phone);
+      exportMap(currUser.fullName, mapIndex, selectedFriend.phone);
       Alert.alert('Map Transfer Attempted', `Your map has been attempted to be transferred to ${selectedFriend.name}`);
     }
   }, [friends, props.route.params.selectedMap]);
@@ -45,7 +45,7 @@ const FriendSelectScreen = (props) => {
             onTransfer={handleSelectFriend}
           />
         )}
-        ListEmptyComponent={<Text style={styles.noFriendsText}>No friends to display.</Text>}
+        ListEmptyComponent={<Text style={styles.noFriendsText}>No Friends To Display.</Text>}
       />
     </View>
   );

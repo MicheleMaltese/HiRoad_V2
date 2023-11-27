@@ -30,7 +30,7 @@ const AddFriendsScreen = (props) => {
     // Validate phone number format here if needed
     // API call
     try {
-      await addFriend(currUser.name, currUser.phone, phoneNumber);
+      await addFriend(currUser.fullName, currUser.phone, phoneNumber);
       Alert.alert("Your friend request has been received!");
     }
     catch {

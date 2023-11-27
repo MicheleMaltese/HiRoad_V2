@@ -32,7 +32,7 @@ function SelectPinExportScreen(props) {
   return (
     <SafeAreaView style={styles.background}>
       <View style={styles.container}>
-      <Text style={styles.pinHeader}>{"Select a Pin You'd Like to Export to a Friend!"}</Text>
+      <Text style={styles.pinHeader}>{"Select A Pin You'd Like To Export To A Friend!"}</Text>
       <ScrollView style={styles.scrollView}>
         {pins.map((pin, index) => (
           <View key={index}>

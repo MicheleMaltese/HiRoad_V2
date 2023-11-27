@@ -96,7 +96,7 @@ function MapViewScreen(props) {
           allowFontScaling={false}
           adjustsFontSizeToFit={true}
         >
-          {"Welcome, " + username}
+          {"Welcome, " + username[0].toUpperCase() + username.slice(1)}
         </Text>
 
         {/* List of user maps */}

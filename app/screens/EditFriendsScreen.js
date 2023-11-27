@@ -56,7 +56,7 @@ const EditFriendsScreen = (props) => {
             onDelete={handleDeleteFriend}
           />
         )}
-        ListEmptyComponent={<Text style={styles.noFriendsText}>No friends to display.</Text>}
+        ListEmptyComponent={<Text style={styles.noFriendsText}>No Friends To Display.</Text>}
       />
     </View>
   );

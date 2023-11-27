@@ -41,7 +41,7 @@ function PinTransferFinalizeScreen(props) {
     const handlePinExport = () => {
         console.log(msg);
 
-        exportPin(currUser.name, mapIndex, pinIndex, msg, friendPhone);
+        exportPin(currUser.fullName, mapIndex, pinIndex, msg, friendPhone);
         Alert.alert('Pin Transfer Attempted', `Your map has been attempted to be transferred to ${friendPhone}`);
     };    
 
@@ -58,7 +58,7 @@ function PinTransferFinalizeScreen(props) {
                     >
                         {/* Text input for changing pin secret message */}
                         <View style={styles.msgInputContainer}>
-                            <Text style={styles.inputLabel}>Leave a Secret Message</Text>
+                            <Text style={styles.inputLabel}>Leave A Secret Message</Text>
                             {/* FIXME: you can't close the keyboard on iOS, you should be able to close it by tapping off of it */}
                             <TextInput
                                 style={styles.msgInput}
