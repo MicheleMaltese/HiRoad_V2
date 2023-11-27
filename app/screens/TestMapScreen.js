@@ -66,7 +66,7 @@ const SystemHelpPopUpRow = (props) => (
 // Creates the system help popup based on edit mode
 const SystemPopupWithIconRows = (props) =>
     props.inEditMode ? (
-        <View style={[styles.systemMessage, { flex: 0.8, flexGrow: 3 }]}>
+        <View style={[styles.systemMessage, { flex: 0.10, flexGrow: 5 }]}>
             <SystemHelpPopUpRow
                 iconName="edit"
                 buttonLabel="Edit Button"
@@ -84,7 +84,7 @@ const SystemPopupWithIconRows = (props) =>
             />
         </View>
     ) : (
-        <View style={[styles.systemMessage, { flex: 0.7 }]}>
+        <View style={[styles.systemMessage, { flex: 0.9 }]}>
             <SystemHelpPopUpRow
                 iconName="edit"
                 buttonLabel="Edit Button"
@@ -95,11 +95,13 @@ const SystemPopupWithIconRows = (props) =>
                 buttonLabel="Location"
                 buttonExplainer="Centers to the map's starting location"
             />
-            <SystemHelpPopUpRow
-                iconName={Platform.OS === "android" ? "share" : "ios-share"}
-                buttonLabel="Share"
-                buttonExplainer="Share a screenshot of your map"
+            
+             <SystemHelpPopUpRow
+                iconName="warning"
+                buttonLabel= "Warning"
+                buttonExplainer="Make sure you are fully zoomed in for the most accurate pin placement"
             />
+           
         </View>
     );
 
@@ -673,7 +675,8 @@ function TestMapScreen(props) {
                             />
                         )}
                         {/* Edit Route button: toggles route edit mode */}
-                        {!routeState ? (
+                        { Platform.OS == "ios" ? (
+                        !routeState? (
                             <FAB
                                 style={styles.addButton}
                                 icon={{ name: "edit-road", color: "#6C3A2C" }}
@@ -687,7 +690,8 @@ function TestMapScreen(props) {
                                 color="#6C3A2C"
                                 onPress={() => ShowHideAddRoute()}
                             />
-                        )}
+                        )
+                        ): null}
                     </View>
                 ) : null}
             </View>
@@ -751,7 +755,7 @@ const styles = StyleSheet.create({
         bottom: "10%",
         alignSelf: "center",
         width: "90%",
-        height: "10%",
+        height: "20%",
         justifyContent: "flex-end",
     },
     systemMessage: {

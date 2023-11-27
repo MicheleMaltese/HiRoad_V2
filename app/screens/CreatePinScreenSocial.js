@@ -4,6 +4,7 @@ import {
     Pressable,
     SafeAreaView,
     StyleSheet,
+    ScrollView,
     Text,
     TextInput,
     View,
@@ -204,6 +205,7 @@ function CreatePinScreenSocial(props) {
     // Color settings for date picker
     const colorOptions = {
         headerColor: "#6C3A2C",
+        colorOptions: "#7BC153",
         changeYearModalColor: "#7BC153",
         weekDaysColor: "#548439",
         selectedDateBackgroundColor: "#7BC153",
@@ -280,7 +282,7 @@ function CreatePinScreenSocial(props) {
     return (
         <>
             <DismissKeyboard>
-                <SafeAreaView style={styles.background}>
+                <ScrollView style={styles.background}>
                     <KeyboardAwareScrollView
                         style={{ flex: 1 }}
                         contentContainerStyle={{
@@ -298,50 +300,57 @@ function CreatePinScreenSocial(props) {
                                 defaultValue={title}
                             ></TextInput>
                         </View>
-                        {/* Date picker*/}
-                        <View style={styles.dateInputContainer}>
-                            <Text style={styles.inputLabel}>Date</Text>
-                            {/* Text box that holdes the date */}
-                            <View style={styles.datePickerInputBox}>
-                                <TextInput
-                                    style={styles.dateInputTextContainer}
-                                    //Displays "Set Date" if this pin does not have a date set to it yet
-                                    placeholder="Press the calendar to set date"
-                                    defaultValue={dateText}
-                                    // value={dateText}
-                                    //Requires user to use the date picker instead of typing in a date
-                                    editable={false}
-                                    onChangeText={setUserDateTypedInput}
-                                />
-                                {/* Button to open the map */}
-                                <Pressable
-                                    style={styles.calendarPressable}
-                                    onPress={openDatePicker}
-                                >
-                                    <Icon
-                                        type="material"
-                                        name="calendar-today"
-                                        color="#6C3A2C"
-                                        iconStyle={styles.calendarIcon}
-                                    />
-                                </Pressable>
-                                <DatePicker
-                                    isVisible={showDatePicker}
-                                    //initialDate={date}
-                                    mode={"single"}
-                                    onCancel={onCancel}
-                                    withoutModal = {false}
-                                    onConfirm={onConfirm}
-                                    colorOptions={colorOptions}
-                                    dateStringFormat="mm-dd-yyyy"
-                                />
-                            </View>
-                            {dateFormatError.length > 0 ? (
-                                <Text style={styles.errorText}>
-                                    {dateFormatError}
-                                </Text>
-                            ) : null}
-                        </View>
+             <View style={styles.dateInputContainer}>
+              <Text style={styles.inputLabel}>Date</Text>
+              {/* Text box that holds the date */}
+              <View style={styles.datePickerInputBox}>
+                <TextInput
+                  style={styles.dateInputTextContainer}
+                  placeholder="Press the calendar to set date"
+                  value={dateText} // Reflects the selected date
+                  editable={false} // Prevent manual editing
+                />
+                {/* Button to open the map */}
+                {/*<Pressable
+                  style={styles.calendarPressable}
+                  onPress={openDatePicker}
+                >
+                  <Icon
+                    type="material"
+                    name="calendar-today"
+                    color="#6C3A2C"
+                    iconStyle={styles.calendarIcon}
+                  />
+        </Pressable>*
+                <DatePicker
+                  isVisible={true}
+                  withoutModal={true}
+                  //initialDate={date}
+                  mode={"single"}
+                  onCancel={onCancel}
+                  onConfirm={onConfirm}
+                  colorOptions={colorOptions}
+                  dateStringFormat="mm-dd-yyyy"
+        />*/}
+              </View>
+              {dateFormatError.length > 0 ? (
+                <Text style={styles.errorText}>{dateFormatError}</Text>
+              ) : null}
+            </View>
+
+            {/* Date picker*/}
+            <View style={styles.dateInputContainer}>
+                <DatePicker
+                  isVisible={true}
+                  withoutModal={true}
+                  //initialDate={date}
+                  mode={"single"}
+                  onCancel={onCancel}
+                  onConfirm={onConfirm}
+                  colorOptions={colorOptions}
+                  dateStringFormat="mm-dd-yyyy"
+                />
+              </View>
                         {/* Text input for changing pin notes */}
                         <View style={styles.notesInputContainer}>
                             <Text style={styles.inputLabel}>Notes</Text>
@@ -409,181 +418,192 @@ function CreatePinScreenSocial(props) {
                             </Pressable>
                         </View>
                     </KeyboardAwareScrollView>
-                </SafeAreaView>
+                </ScrollView>
             </DismissKeyboard>
         </>
     );
 }
 
 const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        flexDirection: "column",
-        backgroundColor: "#FCF9F4",
+  background: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "#FCF9F4",
+  },
+  headerText: {
+    color: "#FCF9F4",
+  },
+  modalStyle: {
+    flex: 1,
+    alignContent: "center",
+    justifyContent: "center",
+  },
+  nameInputContainer: {
+    flex: 0.75,
+    width: "80%",
+    marginTop: "10%",
+  },
+  dateInputContainer: {
+    flex: 1,
+    width: "80%",
+    marginTop: "7%",
+  },
+  notesInputContainer: {
+    flex: 2,
+    width: "80%",
+    marginTop: "7%",
+  },
+  pinSelectionContainer: {
+    flex: 1,
+    width: "90%",
+    alignItems: "center",
+  },
+  buttonContainer: {
+    flex: 0.9,
+    width: "80%",
+    justifyContent: "center",
+    marginTop: "7%",
+  },
+ 
+  inputLabel: {
+    fontFamily: "Avenir-Black",
+    color: "#6C3A2C",
+    fontSize: 20,
+  },
+  input: {
+    backgroundColor: "#ffffff",
+    borderColor: "#6C3A2C",
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 8,
+    fontFamily: "Avenir-Book",
+    fontSize: 18,
+  },
+  dateInputTextContainer: {
+    flex: 1,
+    marginLeft: 8,
+    paddingVertical: 14,
+  },
+  dateText: {
+    fontFamily: "Avenir-Book",
+    fontSize: 18,
+  },
+  datePickerInputBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#ffffff",
+    borderColor: "#6C3A2C",
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    headerText: {
-        color: "#FCF9F4",
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  calendarIcon: {
+    marginRight: 10,
+  },
+  dateTimePickerAligner: {
+    width: "100%",
+    alignItems: "flex-start",
+    flexDirection: "row",
+  },
+  dateTimePicker: {
+    marginLeft: 4,
+    marginTop: 2,
+    width: "40%",
+  },
+  calendarIcon: {
+    fontSize: 24,
+  },
+  notesInput: {
+    backgroundColor: "#ffffff",
+    borderColor: "#6C3A2C",
+    borderWidth: 1,
+    borderRadius: 5,
+    textAlignVertical: "top",
+    padding: 8,
+    flex: 1,
+    marginBottom: "5%",
+    fontFamily: "Avenir-Book",
+    fontSize: 15,
+    height: Dimensions.get("window").height * 0.15,
+  },
+  pinSelectionHeader: {
+    fontFamily: "Avenir-Black",
+    color: "#6C3A2C",
+    fontSize: 18,
+    marginBottom: "2%",
+  },
+  pinRowContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  pinTouchableOpacity: {
+    width: "10%",
+  },
+  createPinButton: {
+    padding: 15,
+    backgroundColor: "#548439",
+    justifyContent: "center",
+    borderRadius: 10,
+    shadowColor: "#474139",
+    shadowRadius: 2,
+    shadowOffset: {
+      width: 2,
+      height: 2,
     },
-    modalStyle: {
-        flex: 1,
-        alignContent: "center",
-        justifyContent: "center"
+    shadowOpacity: 30,
+  },
+  uploadMediaButton: {
+    padding: 15,
+    backgroundColor: "#009CD3",
+    justifyContent: "center",
+    borderRadius: 10,
+    shadowColor: "#474139",
+    shadowRadius: 2,
+    shadowOffset: {
+      width: 2,
+      height: 2,
     },
-    nameInputContainer: {
-        flex: 0.75,
-        width: "80%",
-        marginTop: "10%",
+    shadowOpacity: 30,
+  },
+  changePinButton: {
+    padding: 15,
+    backgroundColor: "#6C3A2C",
+    justifyContent: "center",
+    borderRadius: 10,
+    shadowColor: "#474139",
+    shadowRadius: 2,
+    shadowOffset: {
+      width: 2,
+      height: 2,
     },
-    dateInputContainer: {
-        flex: 1,
-        width: "80%",
-        marginTop: "7%",
-    },
-    notesInputContainer: {
-        flex: 2,
-        width: "80%",
-        marginTop: "7%",
-    },
-    pinSelectionContainer: {
-        flex: 1,
-        width: "90%",
-        alignItems: "center",
-    },
-    buttonContainer: {
-        flex: 0.9,
-        width: "80%",
-        justifyContent: "center",
-        marginTop: "7%",
-    },
-    inputLabel: {
-        fontFamily: "Avenir-Black",
-        color: "#6C3A2C",
-        fontSize: 20,
-    },
-    input: {
-        backgroundColor: "#ffffff",
-        borderColor: "#6C3A2C",
-        borderWidth: 1,
-        borderRadius: 5,
-        padding: 8,
-        fontFamily: "Avenir-Book",
-        fontSize: 18,
-    },
-    dateInputTextContainer: {
-        flex: 1,
-        marginLeft: 8,
-        paddingVertical: 14,
-    },
-    dateText: {
-        fontFamily: "Avenir-Book",
-        fontSize: 18,
-    },
-    datePickerInputBox: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        alignItems: "center",
-        backgroundColor: "#ffffff",
-        borderColor: "#6C3A2C",
-        borderWidth: 1,
-        borderRadius: 5,
-        paddingRight: 6,
-    },
-    dateTimePickerAligner: {
-        width: "100%",
-        alignItems: "flex-start",
-        flexDirection: "row",
-    },
-    dateTimePicker: {
-        marginLeft: 4,
-        marginTop: 2,
-        width: "40%",
-    },
-    calendarIcon: {
-        fontSize: 24,
-    },
-    notesInput: {
-        backgroundColor: "#ffffff",
-        borderColor: "#6C3A2C",
-        borderWidth: 1,
-        borderRadius: 5,
-        textAlignVertical: "top",
-        padding: 8,
-        flex: 1,
-        marginBottom: "5%",
-        fontFamily: "Avenir-Book",
-        fontSize: 15,
-        height: Dimensions.get("window").height * 0.15,
-    },
-    pinSelectionHeader: {
-        fontFamily: "Avenir-Black",
-        color: "#6C3A2C",
-        fontSize: 18,
-        marginBottom: "2%",
-    },
-    pinRowContainer: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
-    },
-    pinTouchableOpacity: {
-        width: "10%",
-    },
-    createPinButton: {
-        padding: 15,
-        backgroundColor: "#548439",
-        justifyContent: "center",
-        borderRadius: 10,
-        shadowColor: "#474139",
-        shadowRadius: 2,
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        },
-        shadowOpacity: 30,
-    },
-    uploadMediaButton: {
-        padding: 15,
-        backgroundColor: "#009CD3",
-        justifyContent: "center",
-        borderRadius: 10,
-        shadowColor: "#474139",
-        shadowRadius: 2,
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        },
-        shadowOpacity: 30,
-    },
-    changePinButton: {
-        padding: 15,
-        backgroundColor: "#6C3A2C",
-        justifyContent: "center",
-        borderRadius: 10,
-        shadowColor: "#474139",
-        shadowRadius: 2,
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        },
-        shadowOpacity: 30,
-    },
-    buttonText: {
-        color: "#FCF9F4",
-        fontFamily: "Avenir-Black",
-        alignSelf: "center",
-        fontWeight: "bold",
-        fontSize: 24,
-    },
-    errorText: {
-        color: "#ffffff",
-        fontFamily: "Avenir-Black",
-        fontSize: 15,
-        textAlign: "center",
-        backgroundColor: "#E77728",
-        paddingLeft: 10,
-        paddingRight: 10,
-    },
+    shadowOpacity: 30,
+  },
+  buttonText: {
+    color: "#FCF9F4",
+    fontFamily: "Avenir-Black",
+    alignSelf: "center",
+    fontWeight: "bold",
+    fontSize: 24,
+  },
+  errorText: {
+    color: "#ffffff",
+    fontFamily: "Avenir-Black",
+    fontSize: 15,
+    textAlign: "center",
+    backgroundColor: "#E77728",
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
 });
 
 export default CreatePinScreenSocial;

@@ -65,7 +65,7 @@ const SystemHelpPopUpRow = (props) => (
 // Creates the system help popup based on edit mode
 const SystemPopupWithIconRows = (props) =>
     props.inEditMode ? (
-        <View style={[styles.systemMessage, { flex: 0.8, flexGrow: 3 }]}>
+        <View style={[styles.systemMessage, { flex: 0.10, flexGrow: 5 }]}>
             <SystemHelpPopUpRow
                 iconName="edit"
                 buttonLabel="Edit Button"
@@ -83,7 +83,7 @@ const SystemPopupWithIconRows = (props) =>
             />
         </View>
     ) : (
-        <View style={[styles.systemMessage, { flex: 0.7 }]}>
+        <View style={[styles.systemMessage, { flex: 0.9 }]}>
             <SystemHelpPopUpRow
                 iconName="edit"
                 buttonLabel="Edit Button"
@@ -94,11 +94,13 @@ const SystemPopupWithIconRows = (props) =>
                 buttonLabel="Location"
                 buttonExplainer="Centers to the map's starting location"
             />
-            <SystemHelpPopUpRow
-                iconName= "camera"
-                buttonLabel="Augmented Reality"
-                buttonExplainer="View a shared pin's secret message in augmented reality"
+            
+             <SystemHelpPopUpRow
+                iconName="warning"
+                buttonLabel= "Warning"
+                buttonExplainer="Make sure you are fully zoomed in for the most accurate pin placement"
             />
+           
         </View>
     );
 
@@ -686,7 +688,8 @@ function SocialMapScreen(props) {
                             />
                         )}
                         {/* Edit Route button: toggles route edit mode */}
-                        {!routeState ? (
+                        { Platform.OS == "ios" ? (
+                        !routeState? (
                             <FAB
                                 style={styles.addButton}
                                 icon={{ name: "edit-road", color: "#6C3A2C" }}
@@ -700,7 +703,8 @@ function SocialMapScreen(props) {
                                 color="#6C3A2C"
                                 onPress={() => ShowHideAddRoute()}
                             />
-                        )}
+                        )
+                        ): null}
                     </View>
                 ) : null}
             </View>
