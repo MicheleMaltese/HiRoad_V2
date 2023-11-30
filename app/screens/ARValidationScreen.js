@@ -15,6 +15,8 @@ import {
 import { Icon } from "react-native-elements";
 import { currUser, exportPin, addMap, acceptFriendRequest, updateUserInfo, updateCurrUser, addFriend, acceptPin } from "../assets/test data/TestUserData.js";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
+import GetLocation from "react-native-get-location"
+import { min } from "react-native-reanimated";
 
 const polyline = require("@mapbox/polyline");
 
@@ -22,6 +24,8 @@ const ARValidationScreen = (props) => {
   const [addresses, setAddresses] = useState([]);
   const [coords, setCoords] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [lat, setLat] = useState();
+  const [lng, setLng] = useState();
 
   function distanceInFeet(lat1, lon1, lat2, lon2) {
         var R = 6371; // Radius of the earth in km
@@ -41,26 +45,38 @@ const ARValidationScreen = (props) => {
         return deg * (Math.PI/180)
     }
 
+    async function getCurrentPositionAsync() {
+      await GetLocation.getCurrentPosition({
+          enableHighAccuracy: true,
+          timeout: 60000,
+      })
+      .then(location => {
+          setLat(location.latitude);
+          setLng(location.longitude);
+      })
+      .catch(error => {
+          const { code, message } = error;
+          console.warn(code, message);
+      })
+    }
+
   async function handleArRequest() {
     let coordIndex = -1;
     let minDistance = 1000;
 
-    /*const loc = await Location.getCurrentPositionAsync();
-    let lat = loc.coords.latitude;
-    let lng = loc.coords.longitude;*/
-
-    let lat = 42.40711433463573;
-    let lng = -83.20938882807493;
+    getCurrentPositionAsync();
+    console.log(messages);
 
     for (let i = 0; i < coords.length; i++) {
         let distance = distanceInFeet(lat, lng, coords[i].lat, coords[i].lng);
 
         if (distance < minDistance) {
             minDistance = distance;
-            coordIndex = 1
+            coordIndex = i
         }
     }
 
+    console.log(minDistance);
     if (minDistance <= 50) {
         console.log(messages[coordIndex]);
     }

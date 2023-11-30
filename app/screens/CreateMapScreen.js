@@ -5,12 +5,14 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  PermissionsAndroid,
   View,
   Linking,
   Alert,
   TouchableWithoutFeedback,
   Keyboard,
   AppState,
+  Platform,
 } from "react-native";
 import {
   changeName,
@@ -23,8 +25,12 @@ import {
   updateUserInfo,
   Location
 } from "../assets/test data/TestUserData.js";
-//import * as Location from "expo-location";
 import { Icon } from "react-native-elements";
+import GetLocation from 'react-native-get-location';
+import Geocoder from 'react-native-geocoding';
+
+const apiKey = 'AIzaSyD-41MO70Z00R38ZsldpcRbztuX31brYn4';
+Geocoder.init(apiKey);
 
 //Creates a dismissable keyboard to use as tags around text fields
 const DismissKeyboard = ({ children }) => (
@@ -105,7 +111,7 @@ function CreateMapScreen(props) {
       ? null
       : currUser.maps[props.route.params.id].startlng
   );
-  [address, setAddress] = useState(
+  const [address, setAddress] = useState(
     props.route.params.mode == "add"
       ? null
       : currUser.maps[props.route.params.id].address
@@ -113,18 +119,41 @@ function CreateMapScreen(props) {
   [showErr, setShowErr] = useState(false);
   [mounted, setMounted] = useState(true);
 
+  const reverseGeocodeAsync = async (latitude, longitude) => {
+  try {
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
+    );
+    const data = await response.json();
+    if (data.results && data.results.length > 0) {
+      const formattedAddress = data.results[0].formatted_address;
+      setAddress(formattedAddress);
+    }
+    return 'No address found';
+  } catch (error) {
+    console.error('Error during reverse geocoding:', error);
+    return 'Error during reverse geocoding';
+  }
+};
+
   //Saves the map data to the user's profile
   //Should not change map data before this point, in case user wants to cancel operation
   const updateMapData = async (props) => {
     try {
-      const coords = await Location.geocodeAsync(address);
+      var coords = "";
+
+      await Geocoder.from(address)
+      .then(json => {
+        coords = json.results[0].geometry.location;
+      })
+      
       //If you are adding a new map, create a new map in the array, and then navigate to it
       if (props.route.params.mode == "add") {
         addMap({
           mapName: title == null || title == "" ? " " : title,
           fromName: "foo",
-          startlat: coords[0].latitude,
-          startlng: coords[0].longitude,
+          startlat: coords.lat,
+          startlng: coords.lng,
           address: address == "Loading..." ? "" : address,
           exported: false,
           pins: [],
@@ -142,8 +171,8 @@ function CreateMapScreen(props) {
         } else {
           changeAddress(address, props.route.params.id);
         }
-        changeLat(coords[0].latitude, props.route.params.id);
-        changeLong(coords[0].longitude, props.route.params.id);
+        changeLat(coords.lat, props.route.params.id);
+        changeLong(coords.lng, props.route.params.id);
         updateUserInfo();
         props.navigation.goBack();
       }
@@ -156,7 +185,22 @@ function CreateMapScreen(props) {
   let [permissions, setPermissions] = useState();
 
   async function permissionsFlow() {
-    let { status } = await Location.requestForegroundPermissionsAsync();
+    let status = null;
+    if (Platform.OS == "android") {
+      status = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Location Permission',
+          message: 'This app needs access to your location.',
+          buttonPositive: 'OK',
+        },
+      );
+    }
+    else {
+      status = await check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+    }
+
+    console.log(status);
     if (status !== "granted") {
       console.log("Permission to access location was denied");
       Alert.alert(
@@ -174,47 +218,37 @@ function CreateMapScreen(props) {
           },
         ]
       );
-      if (mounted) {
         setPermissions(false);
-      }
     } else {
       console.log("Permission Granted");
-      if (mounted) {
-        setAddress("Loading...");
-        getUserLocation();
-        setPermissions(true);
-      }
+      setAddress("Loading...");
+      getUserLocation();
+      setPermissions(true);
     }
   }
 
   const getUserLocation = async () => {
     try {
-      const loc = await Location.getCurrentPositionAsync();
-      if (mounted) {
-        setLat(loc.coords.latitude);
-        setLong(loc.coords.longitude);
-      }
-      const addr = await Location.reverseGeocodeAsync({
-        latitude: lat,
-        longitude: long,
-      });
-      console.log(addr);
-      if (mounted) {
-        setAddress(
-          addr[0].streetNumber +
-            " " +
-            addr[0].street +
-            " " +
-            addr[0].city +
-            " " +
-            addr[0].region
-        );
-      }
-      console.log(address);
+      await GetLocation.getCurrentPosition({
+          enableHighAccuracy: true,
+          timeout: 60000,
+      })
+      .then(location => {
+          setLat(location.latitude);
+          setLong(location.longitude);
+          const addr = reverseGeocodeAsync(
+            lat,
+            long
+          );
+      })
+      .catch(error => {
+          const { code, message } = error;
+          console.warn(code, message);
+      })
+      console.log(lat);
+      console.log(long);
     } catch {
-      if (mounted) {
         setAddress("Couldn't find location");
-      }
     }
   };
 
