@@ -447,7 +447,7 @@ router.get("/user/:email/:password", (req, res) => {
         console.log("second err");
         return res.status(400).send("Second err");
       }
-      // console.log(req.params.password, isMatch);
+      //console.log();
       if (isMatch) {
         return res.status(200).send(user);
       } else {

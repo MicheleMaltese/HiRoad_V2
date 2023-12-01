@@ -16,14 +16,14 @@ let currUser = {};
  ];*/
 
  let URIs = [
-   "http://10.0.2.2:3000/api/user",
-   "http://10.0.2.2:3000/api/userupdate/:id",
-   "http://10.0.2.2:3000/api/upload",
-   "http://10.0.2.2:3000/api/fileinfo",
-   "http://10.0.2.2:3000/api/addfriend",
-   "http://10.0.2.2:3000/api/exportmap",
-   "http://10.0.2.2:3000/api/exportpin",
-   "http://10.0.2.2:3000/api/acceptpin"
+   "http://10.0.0.216:3000/api/user",
+   "http://10.0.0.216:3000/api/userupdate/:id",
+   "http://10.0.0.216:3000/api/upload",
+   "http://10.0.0.216:3000/api/fileinfo",
+   "http://10.0.0.216:3000/api/addfriend",
+   "http://10.0.0.216:3000/api/exportmap",
+   "http://10.0.0.216:3000/api/exportpin",
+   "http://10.0.0.216:3000/api/acceptpin"
  ];
 
 //Pushes the current currUser object to the database. Overwrites the existing data with the data in this object.

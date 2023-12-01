@@ -46,6 +46,7 @@ const ARValidationScreen = (props) => {
     }
 
     async function getCurrentPositionAsync() {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       await GetLocation.getCurrentPosition({
           enableHighAccuracy: true,
           timeout: 60000,
@@ -62,10 +63,11 @@ const ARValidationScreen = (props) => {
 
   async function handleArRequest() {
     let coordIndex = -1;
-    let minDistance = 1000;
+    let minDistance = 100000000000000;
 
-    getCurrentPositionAsync();
     console.log(messages);
+    console.log(lat);
+    console.log(lng);
 
     for (let i = 0; i < coords.length; i++) {
         let distance = distanceInFeet(lat, lng, coords[i].lat, coords[i].lng);
@@ -102,6 +104,8 @@ const ARValidationScreen = (props) => {
       setAddresses(newAddresses);
       setCoords(newCoords);
       setMessages(newMsg);
+
+      await getCurrentPositionAsync();
     };
 
     fetchData();

@@ -197,7 +197,7 @@ function CreateMapScreen(props) {
       );
     }
     else {
-      status = await check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+      status = "granted";
     }
 
     console.log(status);

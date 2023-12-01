@@ -38,10 +38,10 @@ function PinTransferFinalizeScreen(props) {
     console.log(mapIndex);
     console.log(friendPhone);
 
-    const handlePinExport = () => {
+    const handlePinExport = async() => {
         console.log(msg);
 
-        exportPin(currUser.fullName, mapIndex, pinIndex, msg, friendPhone);
+        await exportPin(currUser.fullName, mapIndex, pinIndex, msg, friendPhone);
         Alert.alert('Pin Transfer Attempted', `Your map has been attempted to be transferred to ${friendPhone}`);
     };    
 

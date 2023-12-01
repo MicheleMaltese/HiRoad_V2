@@ -343,8 +343,7 @@ function SocialMapScreen(props) {
                 });
                 updateUserInfo();
                 await delay(500);
-                props.navigation.navigate("Create Route", {
-                    mapId: props.route.params.id,
+                props.navigation.navigate("Create Route Social", {
                     id: currUser.socialMap.routes.length - 1,
                     mode: "add",
                 });
@@ -444,8 +443,7 @@ function SocialMapScreen(props) {
                         onPress={(e) => {
                             e.stopPropagation();
                             if (routeState) {
-                                props.navigation.navigate("Create Route", {
-                                    mapId: props.route.params.id,
+                                props.navigation.navigate("Create Route Social", {
                                     id: index,
                                     mode: "edit",
                                 });
@@ -580,9 +578,8 @@ function SocialMapScreen(props) {
                                     style={[styles.button, styles.buttonEdit]}
                                     onPress={() => {
                                         props.navigation.navigate(
-                                            "Create Route",
+                                            "Create Route Social",
                                             {
-                                                mapId: props.route.params.id,
                                                 id: routes.indexOf(
                                                     routeRef.current
                                                 ),

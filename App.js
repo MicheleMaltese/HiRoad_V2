@@ -26,6 +26,7 @@ import FriendSelectScreen from "./app/screens/FriendSelectScreen";
 import SelectPinExportScreen from "./app/screens/SelectPinExportScreen";
 import FriendSelectScreenPin from "./app/screens/PinForFriendScreen";
 import PinTransferFinalizeScreen from "./app/screens/PinTransferFinalizeScreen";
+import CreateRouteScreenSocial from "./app/screens/CreateRouteScreenSocial";
 //import ArScreen from "./app/screens/ArScreen";
 
 const Stack = createNativeStackNavigator();
@@ -162,6 +163,16 @@ export default class App extends React.Component {
               }}
             />
             <Stack.Screen
+              name="Create Route Social"
+              component={CreateRouteScreenSocial}
+              options={{
+                headerStyle: {
+                  backgroundColor: "#548439",
+                },
+                headerTintColor: "#FCF9F4",
+              }}
+            />
+            <Stack.Screen
               name="Social Map"
               component={SocialMapScreen}
               options={{
@@ -235,7 +246,7 @@ export default class App extends React.Component {
               name="FriendSelectPin"
               component={FriendSelectScreenPin}
               options={{
-                title: "Select Friend for Pin Export",
+                title: "Select Friend",
                 // Adjust these styles to match your app's theme
                 headerStyle: {
                   backgroundColor: "#FCF9F4",

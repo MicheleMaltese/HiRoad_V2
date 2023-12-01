@@ -6,6 +6,8 @@ import {
     Pressable,
     SafeAreaView,
     StyleSheet,
+    TouchableWithoutFeedback,
+    Keyboard,
     Text,
     TextInput,
     useWindowDimensions,
@@ -24,11 +26,14 @@ import {
 } from "../assets/test data/TestUserData";
 
 const AddFriendsScreen = (props) => {
+
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleSendFriendRequest = async() => {
     // Validate phone number format here if needed
     // API call
+    console.log(phoneNumber);
+    console.log(currUser.phone);
     try {
       await addFriend(currUser.fullName, currUser.phone, phoneNumber);
       Alert.alert("Your friend request has been received!");
@@ -39,7 +44,10 @@ const AddFriendsScreen = (props) => {
   };
 
   return (
+    <>
+    <DismissKeyboard>
     <View style={styles.container}>
+    <Text style={styles.Header}>{"Enter A Friend's Phone Number!"}</Text>
       <TextInput
         style={styles.input}
         onChangeText={setPhoneNumber}
@@ -56,8 +64,17 @@ const AddFriendsScreen = (props) => {
           <Text style={styles.submitButtonText}>Add Friend</Text>
       </Pressable>
     </View>
+    </DismissKeyboard>
+    </>
   );
 };
+
+  //Creates a dismissable keyboard to use as tags around text fields
+  const DismissKeyboard = ({ children }) => (
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      {children}
+    </TouchableWithoutFeedback>
+  );
 
 const styles = StyleSheet.create({
   container: {
@@ -66,6 +83,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#FCF9F4', 
+  },
+  Header: {
+    fontSize: 38,
+    color: "#6C3A2C",
+    fontFamily: "Avenir-Black",
+    padding: 10,
+    textAlign: "center",
+    justifyContent: "center"
   },
   input: {
     width: '100%',

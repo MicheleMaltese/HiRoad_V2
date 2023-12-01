@@ -22,10 +22,10 @@ import DatePicker from "react-native-neat-date-picker";
 import {
     currUser,
     URIs,
-    deleteRoute,
-    changeColor,
-    changeRouteTitle,
-    changeRouteDate,
+    deleteSocialRoute,
+    changeColorSocial,
+    changeRouteTitleSocial,
+    changeRouteDateSocial,
     updateUserInfo,
 } from "../assets/test data/TestUserData";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -58,13 +58,12 @@ const RouteColor = (props) => (
     </View>
 );
 
-function CreateRouteScreen(props) {
+function CreateRouteScreenSocial(props) {
     //Ensures a route is not added if the user decides to go back
     const goBackUndoRoute = () => {
         if (mode == "add") {
-            deleteRoute(
-                props.route.params.mapId,
-                currUser.maps[props.route.params.mapId].routes.length - 1
+            deleteSocialRoute(
+                currUser.socialMap.routes.length - 1
             );
         }
         props.navigation.goBack();
@@ -72,7 +71,7 @@ function CreateRouteScreen(props) {
     // Allows a user to delete an existing route
     const goBackDeleteRoute = (index) => {
         if (mode == "edit") {
-            deleteRoute(props.route.params.mapId, index);
+            deleteSocialRoute(index);
             updateUserInfo();
         }
         props.navigation.goBack();
@@ -139,14 +138,14 @@ function CreateRouteScreen(props) {
     // useState to store and change the title of the route.
     // Initialized to route's existing data
     const [title, setTitle] = useState(
-        currUser.maps[props.route.params.mapId].routes[props.route.params.id]
+        currUser.socialMap.routes[props.route.params.id]
             .label
     );
     // useState to store and change the color of the route
     // initialized to the route's existing color, which is black if the user has just drawn
     // the route
     const [color, setColor] = useState(
-        currUser.maps[props.route.params.mapId].routes[props.route.params.id]
+        currUser.socialMap.routes[props.route.params.id]
             .color
     );
 
@@ -156,7 +155,7 @@ function CreateRouteScreen(props) {
     // useState to store and change the date of the route.
     // Initialized to the route's existing data
     const [dateText, setDateText] = useState(
-        currUser.maps[props.route.params.mapId].routes[props.route.params.id]
+        currUser.socialMap.routes[props.route.params.id]
             .date
     );
     // useState that clarifies whether you are adding a new route or editing one
@@ -185,15 +184,13 @@ function CreateRouteScreen(props) {
     // To be called to save the changes to the route's data.
     //Should not change route data before this point, in case user wants to cancel operation
     const updateRouteData = (props) => {
-        changeColor(color, props.route.params.mapId, props.route.params.id);
-        changeRouteTitle(
+        changeColorSocial(color, props.route.params.id);
+        changeRouteTitleSocial(
             title,
-            props.route.params.mapId,
             props.route.params.id
         );
-        changeRouteDate(
+        changeRouteDateSocial(
             dateText,
-            props.route.params.mapId,
             props.route.params.id
         );
         updateUserInfo();
@@ -580,4 +577,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CreateRouteScreen;
+export default CreateRouteScreenSocial;
