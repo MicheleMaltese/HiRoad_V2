@@ -26,7 +26,7 @@ import FriendSelectScreen from "./app/screens/FriendSelectScreen";
 import SelectPinExportScreen from "./app/screens/SelectPinExportScreen";
 import FriendSelectScreenPin from "./app/screens/PinForFriendScreen";
 import PinTransferFinalizeScreen from "./app/screens/PinTransferFinalizeScreen";
-//import ArScreen from "./app/screens/ArScreen";
+import ArScreen from "./app/screens/ArScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -174,6 +174,16 @@ export default class App extends React.Component {
             <Stack.Screen
               name="Augmented Reality Validation"
               component={ARValidationScreen}
+              options={{
+                headerStyle: {
+                  backgroundColor: "#548439",
+                },
+                headerTintColor: "#FCF9F4",
+              }}
+            />
+            <Stack.Screen
+              name="Augmented Reality View"
+              component={ArScreen}
               options={{
                 headerStyle: {
                   backgroundColor: "#548439",
