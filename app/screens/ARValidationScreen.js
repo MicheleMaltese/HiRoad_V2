@@ -62,6 +62,7 @@ const ARValidationScreen = (props) => {
     }
 
   async function handleArRequest() {
+    await new Promise(resolve => setTimeout(resolve, 1000));
     let coordIndex = -1;
     let minDistance = 100000000000000;
 
@@ -79,8 +80,11 @@ const ARValidationScreen = (props) => {
     }
 
     console.log(minDistance);
-    if (minDistance <= 50) {
+    if (minDistance <= 10000000) {
         console.log(messages[coordIndex]);
+        props.navigation.navigate("AR View", {
+          message: messages[coordIndex],
+        });
     }
     else {
         Alert.alert('You must be within 50 feet of a What3Words Address!');
