@@ -16,14 +16,14 @@ let currUser = {};
  ];*/
 
  let URIs = [
-   "http://10.0.0.216:3000/api/user",
-   "http://10.0.0.216:3000/api/userupdate/:id",
-   "http://10.0.0.216:3000/api/upload",
-   "http://10.0.0.216:3000/api/fileinfo",
-   "http://10.0.0.216:3000/api/addfriend",
-   "http://10.0.0.216:3000/api/exportmap",
-   "http://10.0.0.216:3000/api/exportpin",
-   "http://10.0.0.216:3000/api/acceptpin"
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/user",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/userupdate/:id",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/upload",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/fileinfo",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/addfriend",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/exportmap",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/exportpin",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/acceptpin"
  ];
 
 //Pushes the current currUser object to the database. Overwrites the existing data with the data in this object.

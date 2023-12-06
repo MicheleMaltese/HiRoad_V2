@@ -42,7 +42,7 @@ function PinTransferFinalizeScreen(props) {
         console.log(msg);
 
         await exportPin(currUser.fullName, mapIndex, pinIndex, msg, friendPhone);
-        Alert.alert('Pin Transfer Attempted', `Your map has been attempted to be transferred to ${friendPhone}`);
+        Alert.alert('Pending...', `Your pin has shared to ${friendPhone}`);
     };    
 
     return (

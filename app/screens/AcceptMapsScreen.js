@@ -49,14 +49,14 @@ const AcceptMapsScreen = (props) => {
     setMapRequests(addIdToObjects(currUser.tempObjects.tempMaps));
   }, [mapRequests]);
 
-  const handleAcceptMapRequest = useCallback((mapRequestId) => {
+  const handleAcceptMapRequest = useCallback(async (mapRequestId) => {
     let name = mapRequests[parseInt(mapRequestId)].fromName;
     acceptMapRequest(parseInt(mapRequestId));
     deleteMapRequest(parseInt(mapRequestId));
     Alert.alert('Map Request Accepted', `You have accepted the map request from ${name}. Log back in to see your updated map list`);
 
-    updateUserInfo();
     setMapRequests(addIdToObjects(currUser.tempObjects.tempMaps));
+    updateUserInfo();
   }, [mapRequests]);
 
   return (

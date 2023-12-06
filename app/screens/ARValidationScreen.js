@@ -80,7 +80,7 @@ const ARValidationScreen = (props) => {
     }
 
     console.log(minDistance);
-    if (minDistance <= 10000000) {
+    if (minDistance <= 50) {
         console.log(messages[coordIndex]);
         props.navigation.navigate("AR View", {
           message: messages[coordIndex],
@@ -123,7 +123,7 @@ const ARValidationScreen = (props) => {
           allowFontScaling={false}
           adjustsFontSizeToFit={true}
         >
-          {"To view a secret message in augmented reality, make sure you are within 50 feet of any of the following What3Words addresses."}
+          {"To view a secret message in augmented reality, make sure you are within 50 feet of any of the following What3Words addresses"}
         </Text>
 
         {/* List of shared addresses */}

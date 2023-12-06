@@ -317,7 +317,7 @@ router.post("/exportpin", (req, res) => {
 router.post("/acceptpin", async(req, res) => {
   console.log("Pin transfer attempted");
   const body = req.body;
-  const user = body.email
+  const user_email = body.email
   let user_pin = body.pin;
 
     if (!body) {
@@ -327,7 +327,7 @@ router.post("/acceptpin", async(req, res) => {
     });
   }
 
-  console.log(user);
+  console.log(user_email);
   console.log(user_pin);
 
   res.setHeader("Content-Type", "application/json");
@@ -342,7 +342,7 @@ router.post("/acceptpin", async(req, res) => {
     res.status(400).send({error: JSON.stringify(error)});
   }
 
-  UserModel.findOne({ email: user }, (err, user) => {
+  UserModel.findOne({ email: user_email }, (err, user) => {
     if (err || user == null) {
       return res.status(404).json({
         err,
@@ -354,7 +354,7 @@ router.post("/acceptpin", async(req, res) => {
     pins.push(user_pin);
 
     user.socialMap.pins = pins;
-    console.log(pins);
+    console.log(user);
 
     user
       .save()

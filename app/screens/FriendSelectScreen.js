@@ -31,7 +31,7 @@ const FriendSelectScreen = (props) => {
     const selectedFriend = friends.find(friend => friend.id === friendId);
     if (selectedFriend) {
       exportMap(currUser.fullName, mapIndex, selectedFriend.phone);
-      Alert.alert('Map Transfer Attempted', `Your map has been attempted to be transferred to ${selectedFriend.name}`);
+      Alert.alert('Pending...', `Your map has been shared to ${selectedFriend.name}`);
     }
   }, [friends, props.route.params.selectedMap]);
 

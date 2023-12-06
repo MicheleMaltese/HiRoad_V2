@@ -49,7 +49,7 @@ const InitialScene = (props) => {
         source={require('../assets/uploads-files-3874711-Envelope.obj')}
         position={[0, 0, -5]}
         rotation={[30,40,80]}
-        scale={[0.01,0.01,0.01]}
+        scale={[0.025,0.025,0.025]}
         animation={{name:'rotate', loop:true, run:true}}
         type="OBJ"
       />

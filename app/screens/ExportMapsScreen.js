@@ -30,7 +30,7 @@ function ExportMapsScreen() {
   return (
     <SafeAreaView style={styles.background}>
       <View style={styles.container}>
-      <Text style={styles.mapHeader}>{"Export A Map To A Friend!"}</Text>
+      <Text style={styles.mapHeader}>{"Send A Map\nTo A Friend!"}</Text>
       <ScrollView style={styles.scrollView}>
         {maps.map((map, index) => (
           <View key={index}>

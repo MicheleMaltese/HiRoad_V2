@@ -30,7 +30,7 @@ function ExportPinsScreen() {
   return (
     <SafeAreaView style={styles.background}>
       <View style={styles.container}>
-      <Text style={styles.mapHeader}>{"Select A Map Whose Pin You'd Like To Export!"}</Text>
+      <Text style={styles.mapHeader}>{"Step One:\nSelect Map!"}</Text>
       <ScrollView style={styles.scrollView}>
         {maps.map((map, index) => (
           <View key={index}>

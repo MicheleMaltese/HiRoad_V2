@@ -18,7 +18,7 @@ import {
 // FriendRequestItem component representing each friend request
 const FriendRequestItem = ({ friendRequest, onAccept, onDecline }) => (
   <View key={friendRequest.id} style={styles.friendRequestItem}>
-      <Text style={styles.friendRequestName}>{friendRequest.name}</Text>
+      <Text style={styles.friendRequestName}>{friendRequest.name }</Text>
       <Text style={styles.friendRequestName}>{friendRequest.phone}</Text>
     <View style={styles.buttonsContainer}>
     <TouchableOpacity onPress={() => onAccept(friendRequest.id)} style={styles.acceptButton}>
@@ -97,9 +97,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   friendRequestName: {
-    fontSize: 18,
-    color: '#6C3A2C', // Text color from your theme
-    fontFamily: 'Avenir-Roman', // Font from your theme
+    fontSize: 14,
+    color: '#6C3A2C', 
+    fontFamily: 'Avenir-Roman',
+    marginRight: 8
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -107,12 +108,12 @@ const styles = StyleSheet.create({
     minWidth: 150,
   },
     deleteButton: {
-    width: 100, // Adjust the width as needed
-    height: 40, // Adjust the height as needed
+    width: 80, 
+    height: 40, 
     backgroundColor: '#6C3A2C',
     justifyContent: 'center',
     borderRadius: 10,
-    padding: 5, // Padding within the button
+    padding: 5,
   },
   deleteButtonText: {
     color: '#FFFFFF',
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
     acceptButton: {
-    width: 100, // Adjust the width as needed
+    width: 80, // Adjust the width as needed
     height: 40, // Adjust the height as needed
     backgroundColor: "#548439",
     marginRight: 8,

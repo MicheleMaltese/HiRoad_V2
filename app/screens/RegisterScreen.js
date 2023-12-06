@@ -84,8 +84,8 @@ const handleRegister = async (
             emailError = "Please enter a valid email.";
         }
         //Checking if password is at least 8 character
-        if (password.length < 8) {
-            passwordError = "Password must be at least 8 characters.";
+        if (!validate_password(password)) {
+            passwordError = "Password must be at least 8 characters, contain an uppercase character, lowercase character, and a number.";
         } else {
             passwordError = "";
             passwordValid = true;

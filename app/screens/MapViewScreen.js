@@ -80,15 +80,11 @@ function MapViewScreen(props) {
           initialRegion={{
             latitude: 43.436,
             longitude: -83.377,
-            latitudeDelta: 5,
-            longitudeDelta: 5,
+            latitudeDelta: 23,
+            longitudeDelta: 23,
           }}
           zoomEnabled={true}
         >
-          <Marker
-            coordinate={{ latitude: 42.436, longitude: -83.377 }}
-            title="Marker"
-          />
         </MapView>
         {/* Screen title. Welcomes user, displays their name.*/}
         <Text

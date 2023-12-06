@@ -490,8 +490,8 @@ function TestMapScreen(props) {
                             //FIXME: Needs a backup plan in case the user disconnects from the server, probably hardcode the default pin
                             source={{ uri: URIs[3] + "/" + item.icon }}
                             style={{
-                                height: 35,
-                                width: 35,
+                                height: 45,
+                                width: 45,
                                 resizeMode: "contain",
                             }}
                             defaultSource={require("../assets/apingreen.png")}
