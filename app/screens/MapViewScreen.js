@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     color: "#FCF9F4",
     fontFamily: "Avenir-Heavy",
     alignSelf: "flex-start",
-    fontSize: 28,
+    fontSize: 20,
   },
   mapButton: {
     width: "90%",
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     color: "#FCF9F4",
     fontFamily: "Avenir-Light",
     alignSelf: "flex-start",
-    fontSize: 24,
+    fontSize: 20,
     marginLeft: "5%",
   },
   editButton: {

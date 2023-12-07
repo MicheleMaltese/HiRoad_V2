@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 48, // Updated font size
+    fontSize: 36, // Updated font size
     color: "#6C3A2C", // Updated text color
     marginBottom: 20,
     fontFamily: "Avenir-Black", // Updated font

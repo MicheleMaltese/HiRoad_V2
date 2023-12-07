@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   pinRequestName: {
-    fontSize: 18,
+    fontSize: 13,
     color: '#6C3A2C', // Text color from your theme
     fontFamily: 'Avenir-Roman', // Font from your theme
   },
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
     acceptButton: {
+    marginRight: 5,
     width: 100, // Adjust the width as needed
     height: 40, // Adjust the height as needed
     backgroundColor: "#548439",

@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FCF9F4', 
   },
   Header: {
-    fontSize: 38,
+    fontSize: 28,
     color: "#6C3A2C",
     fontFamily: "Avenir-Black",
     padding: 10,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         margin: "10%",
         width: "60%",
         height: "40%",
-        flex: 0.1,
+        flex: 0.15,
         backgroundColor: "#6C3A2C",
         justifyContent: "center",
         borderRadius: 10,

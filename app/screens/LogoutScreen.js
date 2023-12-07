@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#FCF9F4",
     },
     headerContainer: {
-        flex: 0.2,
+        flex: 0.32,
         padding: "10%",
         justifyContent: "center",
     },
     logoutHeader: {
-        fontSize: 36,
+        fontSize: 30,
         color: "#548439",
         fontFamily: "Avenir-Black",
         marginBottom: "-10%",

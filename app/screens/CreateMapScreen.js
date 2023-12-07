@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
   },
   createMapButton: {
     width: "80%",
-    flex: 0.1,
+    flex: .25,
     backgroundColor: "#548439",
     justifyContent: "center",
     borderRadius: 10,

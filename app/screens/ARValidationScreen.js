@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     color: "#FCF9F4",
     fontFamily: "Avenir-Heavy",
     alignSelf: "flex-start",
-    fontSize: 28,
+    fontSize: 20,
     textAlign: "center",
   },
   mapButton: {

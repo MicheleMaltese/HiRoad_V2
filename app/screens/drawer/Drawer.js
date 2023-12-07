@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Icon } from "react-native";
+import { Dimensions, Icon } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import MapViewScreen from "../MapViewScreen";
 import LogoutScreen from "../LogoutScreen";
@@ -27,7 +27,7 @@ export default function MyDrawer() {
                 },
                 drawerLabelStyle: {
                     fontFamily: "Avenir-Heavy",
-                    fontSize: 18,
+                    fontSize: Dimensions.get("window").height * 0.02,
                     color: "#6C3A2C",
                 },
                 drawerActiveTintColor: "#6C3A2C",
