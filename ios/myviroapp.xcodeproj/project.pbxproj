@@ -32,14 +32,14 @@
 		4AFC0F372B186D740048A5B6 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0F272B186D740048A5B6 /* EvilIcons.ttf */; };
 		4AFC0F382B186D740048A5B6 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0F282B186D740048A5B6 /* SimpleLineIcons.ttf */; };
 		4AFC0F392B186D740048A5B6 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0F292B186D740048A5B6 /* MaterialIcons.ttf */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		B7C874B0C880FFE23D3DDD49 /* libPods-myviroapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAAA2C9360F4FE53ABC5D91 /* libPods-myviroapp.a */; };
-		D76EC9AAC504D945DA32D9DF /* libPods-myviroapp-myviroappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D8DF7559FA34C33C075172 /* libPods-myviroapp-myviroappTests.a */; };
-		BDCA542C73C24D0092CB4ED8 /* Avenir-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = B01037AB823F426CB66B1D74 /* Avenir-Black.otf */; };
-		D7C307F839744BF99D4B79BC /* Avenir-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = CBE795D955E243998DBE0D7D /* Avenir-Book.otf */; };
 		72B7D3CFF934415DAE2BC8E7 /* Avenir-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9005C29151B24281933DB649 /* Avenir-Heavy.otf */; };
-		AAA28566DA0445E8A55165AA /* Avenir-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1DD70E96A9E43D892599999 /* Avenir-Light.otf */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		90D96EAD8B434BD8A4097215 /* Avenir-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = 660BCD73DC0940FEA053D326 /* Avenir-Roman.otf */; };
+		AAA28566DA0445E8A55165AA /* Avenir-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1DD70E96A9E43D892599999 /* Avenir-Light.otf */; };
+		B7C874B0C880FFE23D3DDD49 /* libPods-myviroapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAAA2C9360F4FE53ABC5D91 /* libPods-myviroapp.a */; };
+		BDCA542C73C24D0092CB4ED8 /* Avenir-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = B01037AB823F426CB66B1D74 /* Avenir-Black.otf */; };
+		D76EC9AAC504D945DA32D9DF /* libPods-myviroapp-myviroappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D8DF7559FA34C33C075172 /* libPods-myviroapp-myviroappTests.a */; };
+		D7C307F839744BF99D4B79BC /* Avenir-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = CBE795D955E243998DBE0D7D /* Avenir-Book.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,7 @@
 		00E356EE1AD99517003FC87E /* myviroappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myviroappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* myviroappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myviroappTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* myviroapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myviroapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* HiRoad Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HiRoad Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = myviroapp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = myviroapp/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = myviroapp/Images.xcassets; sourceTree = "<group>"; };
@@ -86,16 +86,16 @@
 		4AFC0F292B186D740048A5B6 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		4DFD222EAE268ECC94A3CB53 /* Pods-myviroapp-myviroappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myviroapp-myviroappTests.release.xcconfig"; path = "Target Support Files/Pods-myviroapp-myviroappTests/Pods-myviroapp-myviroappTests.release.xcconfig"; sourceTree = "<group>"; };
 		60D8DF7559FA34C33C075172 /* libPods-myviroapp-myviroappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myviroapp-myviroappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		660BCD73DC0940FEA053D326 /* Avenir-Roman.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Avenir-Roman.otf"; path = "../app/assets/fonts/Avenir-Roman.otf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = myviroapp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		866F8915E3A58656ABBC45C9 /* Pods-myviroapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myviroapp.release.xcconfig"; path = "Target Support Files/Pods-myviroapp/Pods-myviroapp.release.xcconfig"; sourceTree = "<group>"; };
+		9005C29151B24281933DB649 /* Avenir-Heavy.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Avenir-Heavy.otf"; path = "../app/assets/fonts/Avenir-Heavy.otf"; sourceTree = "<group>"; };
+		B01037AB823F426CB66B1D74 /* Avenir-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Avenir-Black.otf"; path = "../app/assets/fonts/Avenir-Black.otf"; sourceTree = "<group>"; };
+		C1DD70E96A9E43D892599999 /* Avenir-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Avenir-Light.otf"; path = "../app/assets/fonts/Avenir-Light.otf"; sourceTree = "<group>"; };
+		CBE795D955E243998DBE0D7D /* Avenir-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Avenir-Book.otf"; path = "../app/assets/fonts/Avenir-Book.otf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		EDAAA2C9360F4FE53ABC5D91 /* libPods-myviroapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myviroapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F63F571D998311D83A5D13F4 /* Pods-myviroapp-myviroappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myviroapp-myviroappTests.debug.xcconfig"; path = "Target Support Files/Pods-myviroapp-myviroappTests/Pods-myviroapp-myviroappTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B01037AB823F426CB66B1D74 /* Avenir-Black.otf */ = {isa = PBXFileReference; name = "Avenir-Black.otf"; path = "../app/assets/fonts/Avenir-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CBE795D955E243998DBE0D7D /* Avenir-Book.otf */ = {isa = PBXFileReference; name = "Avenir-Book.otf"; path = "../app/assets/fonts/Avenir-Book.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9005C29151B24281933DB649 /* Avenir-Heavy.otf */ = {isa = PBXFileReference; name = "Avenir-Heavy.otf"; path = "../app/assets/fonts/Avenir-Heavy.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C1DD70E96A9E43D892599999 /* Avenir-Light.otf */ = {isa = PBXFileReference; name = "Avenir-Light.otf"; path = "../app/assets/fonts/Avenir-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		660BCD73DC0940FEA053D326 /* Avenir-Roman.otf */ = {isa = PBXFileReference; name = "Avenir-Roman.otf"; path = "../app/assets/fonts/Avenir-Roman.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +156,18 @@
 				60D8DF7559FA34C33C075172 /* libPods-myviroapp-myviroappTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		37577381DE974342AA5E2E6D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B01037AB823F426CB66B1D74 /* Avenir-Black.otf */,
+				CBE795D955E243998DBE0D7D /* Avenir-Book.otf */,
+				9005C29151B24281933DB649 /* Avenir-Heavy.otf */,
+				C1DD70E96A9E43D892599999 /* Avenir-Light.otf */,
+				660BCD73DC0940FEA053D326 /* Avenir-Roman.otf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		39151F339D5A4A305A34497A /* Pods */ = {
@@ -234,24 +246,11 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* myviroapp.app */,
+				13B07F961A680F5B00A75B9A /* HiRoad Social.app */,
 				00E356EE1AD99517003FC87E /* myviroappTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
-		};
-		37577381DE974342AA5E2E6D /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				B01037AB823F426CB66B1D74 /* Avenir-Black.otf */,
-				CBE795D955E243998DBE0D7D /* Avenir-Book.otf */,
-				9005C29151B24281933DB649 /* Avenir-Heavy.otf */,
-				C1DD70E96A9E43D892599999 /* Avenir-Light.otf */,
-				660BCD73DC0940FEA053D326 /* Avenir-Roman.otf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -296,7 +295,7 @@
 			);
 			name = myviroapp;
 			productName = myviroapp;
-			productReference = 13B07F961A680F5B00A75B9A /* myviroapp.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* HiRoad Social.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -618,10 +617,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3PM768UDQ8;
+				DEVELOPMENT_TEAM = QERYDV2M4T;
 				ENABLE_BITCODE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = myviroapp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "HiRoad Social";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -631,8 +632,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aryassine.starterkit;
-				PRODUCT_NAME = myviroapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mittmaps.hiroadsocial;
+				PRODUCT_NAME = "HiRoad Social";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -646,9 +647,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3PM768UDQ8;
+				DEVELOPMENT_TEAM = QERYDV2M4T;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = myviroapp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "HiRoad Social";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -658,8 +661,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aryassine.starterkit;
-				PRODUCT_NAME = myviroapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mittmaps.hiroadsocial;
+				PRODUCT_NAME = "HiRoad Social";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
