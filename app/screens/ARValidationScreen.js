@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     color: "#FCF9F4",
     fontFamily: "Avenir-Light",
     alignSelf: "flex-start",
-    fontSize: 22,
+    fontSize: 20,
     marginLeft: "5%",
     padding: 4
   },

@@ -9,10 +9,14 @@ let currUser = {};
 //2: Upload a file (should not be here)
 //3: Return array of file names, or append a file name to display that image
 /*let URIs = [
-   "https://hiroad2022.herokuapp.com/api/user",
-   "https://hiroad2022.herokuapp.com/api/user/:id",
-   "https://hiroad2022.herokuapp.com/api/upload",
-   "https://hiroad2022.herokuapp.com/api/fileinfo",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/user",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/userupdate/:id",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/upload",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/fileinfo",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/addfriend",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/exportmap",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/exportpin",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/acceptpin"
  ];*/
 
  let URIs = [
@@ -44,7 +48,13 @@ async function exportPin(name, mapIndex, index, msg, friendPhone) {
 }
 
 async function acceptPin(email, index) {
-  await axios.post(URIs[7], {email: email, pin: currUser.tempObjects.tempPins[index]});
+  const pin = await axios.post(URIs[7], {email: email, pin: currUser.tempObjects.tempPins[index]});
+  let pins = user.socialMap.pins;
+  pins.push(pin);
+
+  console.log(pin);
+
+  currUser.socialMap.pins = pins;
 }
 
 //Sets the currUser object to the passed in data. Used for putting the user's data in currUser, called when logging in

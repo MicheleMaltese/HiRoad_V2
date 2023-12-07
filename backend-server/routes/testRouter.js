@@ -359,11 +359,7 @@ router.post("/acceptpin", async(req, res) => {
     user
       .save()
       .then(() => {
-        return res.status(200).json({
-          success: true,
-          id: user._id,
-          message: "Pin placed on social map!",
-        });
+        return res.status(200).send(user_pin);
       })
       .catch((error) => {
         console.log(error);
