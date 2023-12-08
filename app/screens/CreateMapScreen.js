@@ -289,14 +289,14 @@ function CreateMapScreen(props) {
             style={styles.createMapButton}
             onPress={() => permissionsFlow()}
           >
-            <Text style={styles.createMapButtonText}>USE LOCATION</Text>
+            <Text style={styles.createMapButtonText} allowFontScaling={false}>USE LOCATION</Text>
           </Pressable>
           {/* Press this button to save the map data */}
           <Pressable
             style={styles.createMapButton}
             onPress={() => updateMapData(props)}
           >
-            <Text style={styles.createMapButtonText}>SAVE MAP</Text>
+            <Text style={styles.createMapButtonText} allowFontScaling={false}>SAVE MAP</Text>
           </Pressable>
         </SafeAreaView>
       </DismissKeyboard>
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
   },
   createMapButton: {
     width: "80%",
-    flex: .25,
+    flex: .1,
     backgroundColor: "#548439",
     justifyContent: "center",
     borderRadius: 10,

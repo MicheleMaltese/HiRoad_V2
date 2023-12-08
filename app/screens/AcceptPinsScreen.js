@@ -49,13 +49,12 @@ const AcceptPinsScreen = (props) => {
     setPinRequests(addIdToObjects(currUser.tempObjects.tempPins));
   }, [pinRequests]);
 
-  const handleAcceptPinRequest = useCallback((pinRequestId) => {
+  const handleAcceptPinRequest = useCallback(async (pinRequestId) => {
     let name = pinRequests[parseInt(pinRequestId)].fromName;
     acceptPin(currUser.email, parseInt(pinRequestId));
     deletePinRequest(parseInt(pinRequestId));
     Alert.alert('Pin Request Accepted', `You have accepted the pin request from ${name}. Log back in to see your updated pin list`);
 
-    updateUserInfo();
     setPinRequests(addIdToObjects(currUser.tempObjects.tempPins));
   }, [pinRequests]);
 

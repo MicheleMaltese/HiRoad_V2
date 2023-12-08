@@ -261,6 +261,7 @@ function RegisterScreen(props) {
                             <Text
                                 style={styles.inputLabel}
                                 maxFontSizeMultiplier={1.25}
+                                allowFontScaling={false}
                             >
                                 What should we call you?
                             </Text>
@@ -278,7 +279,7 @@ function RegisterScreen(props) {
                             />
                             {/* Show error message below name input if necessary */}
                             {nameError.length > 0 && nameErrorMsg.length > 0 ? (
-                                <Text style={styles.errorText}>
+                                <Text style={styles.errorText} allowFontScaling={false}>
                                     {nameError}
                                 </Text>
                             ) : null}
@@ -288,6 +289,7 @@ function RegisterScreen(props) {
                             <Text
                                 style={styles.inputLabel}
                                 maxFontSizeMultiplier={1.25}
+                                allowFontScaling={false}
                             >
                                 What's your full name?
                             </Text>
@@ -306,7 +308,7 @@ function RegisterScreen(props) {
                             />
                             {/* Show error message below name input if necessary */}
                             {fullNameError.length > 0 && fullNameErrorMsg.length > 0 ? (
-                                <Text style={styles.errorText}>
+                                <Text style={styles.errorText} allowFontScaling={false}>
                                     {fullNameError}
                                 </Text>
                             ) : null}
@@ -316,6 +318,7 @@ function RegisterScreen(props) {
                             <Text
                                 style={styles.inputLabel}
                                 maxFontSizeMultiplier={1.25}
+                                allowFontScaling={false}
                             >
                                 Enter your phone number
                             </Text>
@@ -340,7 +343,7 @@ function RegisterScreen(props) {
                             />
                             {/* Show error message below name input if necessary */}
                             {phoneError.length > 0 && phoneErrorMsg.length > 0 ? (
-                                <Text style={styles.errorText}>
+                                <Text style={styles.errorText} allowFontScaling={false}>
                                     {phoneError}
                                 </Text>
                             ) : null}
@@ -350,6 +353,7 @@ function RegisterScreen(props) {
                             <Text
                                 style={styles.inputLabel}
                                 maxFontSizeMultiplier={1.75}
+                                allowFontScaling={false}
                             >
                                 Enter your email
                             </Text>
@@ -375,7 +379,7 @@ function RegisterScreen(props) {
                             {/* Show error message below email input if necessary */}
                             {emailError.length > 0 &&
                             emailErrorMsg.length > 0 ? (
-                                <Text style={styles.errorText}>
+                                <Text style={styles.errorText} allowFontScaling={false}>
                                     {emailErrorMsg}
                                 </Text>
                             ) : null}
@@ -386,6 +390,7 @@ function RegisterScreen(props) {
                             <Text
                                 style={styles.inputLabel}
                                 maxFontSizeMultiplier={1.6}
+                                allowFontScaling={false}
                             >
                                 Confirm your email
                             </Text>
@@ -411,7 +416,7 @@ function RegisterScreen(props) {
                             {/* Show error message below confirm email input if necessary */}
                             {confEmailErrorMsg.length > 0 ||
                             confEmailError.length > 0 ? (
-                                <Text style={styles.errorText}>
+                                <Text style={styles.errorText} allowFontScaling={false}>
                                     {confEmailErrorMsg}
                                 </Text>
                             ) : null}
@@ -421,6 +426,7 @@ function RegisterScreen(props) {
                             <Text
                                 style={styles.inputLabel}
                                 maxFontSizeMultiplier={1.75}
+                                allowFontScaling={false}
                             >
                                 Create a password
                             </Text>
@@ -455,7 +461,7 @@ function RegisterScreen(props) {
                             {/* Show error message below password input if necessary */}
                             {passwordError.length > 0 ||
                             passwordErrorMsg.length > 0 ? (
-                                <Text style={styles.errorText}>
+                                <Text style={styles.errorText} allowFontScaling={false}>
                                     {passwordErrorMsg}
                                 </Text>
                             ) : null}
@@ -465,6 +471,7 @@ function RegisterScreen(props) {
                             <Text
                                 style={styles.inputLabel}
                                 maxFontSizeMultiplier={1.4}
+                                allowFontScaling={false}
                             >
                                 Confirm your password
                             </Text>
@@ -523,7 +530,7 @@ function RegisterScreen(props) {
                             {/* Show error message below confirm password input if necessary */}
                             {confPasswordError.length > 0 ||
                             confPasswordErrorMsg.length > 0 ? (
-                                <Text style={styles.errorText}>
+                                <Text style={styles.errorText} allowFontScaling={false}>
                                     {confPasswordErrorMsg}
                                 </Text>
                             ) : null}

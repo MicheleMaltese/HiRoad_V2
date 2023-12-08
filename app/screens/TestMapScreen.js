@@ -56,7 +56,7 @@ const SystemHelpPopUpRow = (props) => (
             >
                 {props.buttonLabel}
             </Text>
-            <Text style={[styles.systemText, { alignSelf: "flex-start" }]}>
+            <Text allowFontScaling={false} style={[styles.systemText, { alignSelf: "flex-start" }]}>
                 {props.buttonExplainer}
             </Text>
         </View>

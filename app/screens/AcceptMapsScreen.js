@@ -53,10 +53,11 @@ const AcceptMapsScreen = (props) => {
     let name = mapRequests[parseInt(mapRequestId)].fromName;
     acceptMapRequest(parseInt(mapRequestId));
     deleteMapRequest(parseInt(mapRequestId));
-    Alert.alert('Map Request Accepted', `You have accepted the map request from ${name}. Log back in to see your updated map list`);
+    Alert.alert('Map Request Accepted', `You have accepted the map request from ${name}. Click on the pencil icon at the top to view this new map.`);
 
     setMapRequests(addIdToObjects(currUser.tempObjects.tempMaps));
-    updateUserInfo();
+    await updateUserInfo();
+    props.navigation.goBack();
   }, [mapRequests]);
 
   return (
