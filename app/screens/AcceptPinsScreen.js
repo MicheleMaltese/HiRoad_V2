@@ -15,7 +15,7 @@ import {
 
 const PinRequestItem = ({ pinRequest, onAccept, onDecline }) => (
   <View key={pinRequest.id} style={styles.pinRequestItem}>
-      <Text style={styles.pinRequestName}>{'Pin Name: ' + pinRequest.label + '\nFrom: ' + pinRequest.fromName}</Text>
+      <Text style={styles.pinRequestName}>{'Pin Name:\n' + pinRequest.label + '\n\nFrom:\n' + pinRequest.fromName}</Text>
     <View style={styles.buttonsContainer}>
     <TouchableOpacity onPress={() => onAccept(pinRequest.id)} style={styles.acceptButton}>
       <Text style={styles.acceptButtonText}>Accept</Text>
@@ -92,7 +92,6 @@ const AcceptPinsScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22,
     backgroundColor: '#FCF9F4', // Background color from your theme
   },
   pinRequestItem: {

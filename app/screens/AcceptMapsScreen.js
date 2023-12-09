@@ -15,7 +15,7 @@ import {
 
 const MapRequestItem = ({ mapRequest, onAccept, onDecline }) => (
   <View key={mapRequest.id} style={styles.mapRequestItem}>
-      <Text style={styles.mapRequestName}>{'Map Name: ' + mapRequest.mapName + '\nFrom: ' + mapRequest.fromName}</Text>
+      <Text style={styles.mapRequestName}>{'Map Name:\n' + mapRequest.mapName + '\n\nFrom:\n' + mapRequest.fromName}</Text>
     <View style={styles.buttonsContainer}>
     <TouchableOpacity onPress={() => onAccept(mapRequest.id)} style={styles.acceptButton}>
       <Text style={styles.acceptButtonText}>Accept</Text>
@@ -83,7 +83,6 @@ const AcceptMapsScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22,
     backgroundColor: '#FCF9F4', // Background color from your theme
   },
   mapRequestItem: {
