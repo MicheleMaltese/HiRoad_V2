@@ -4,6 +4,8 @@ import {
     URIs,
     addFriend,
     currUser,
+    updateCurrUser,
+    getUpdatedUser,
     acceptFriendRequest,
     deleteFriendRequest,
     updateUserInfo,
@@ -53,10 +55,11 @@ const AcceptMapsScreen = (props) => {
     let name = mapRequests[parseInt(mapRequestId)].fromName;
     acceptMapRequest(parseInt(mapRequestId));
     deleteMapRequest(parseInt(mapRequestId));
-    Alert.alert('Map Request Accepted', `You have accepted the map request from ${name}. Click on the pencil icon at the top to view this new map.`);
+    Alert.alert('Map Request Accepted', `You have accepted the map request from ${name}.`);
 
     setMapRequests(addIdToObjects(currUser.tempObjects.tempMaps));
     await updateUserInfo();
+    updateCurrUser(await getUpdatedUser(currUser.email));
     props.navigation.goBack();
   }, [mapRequests]);
 

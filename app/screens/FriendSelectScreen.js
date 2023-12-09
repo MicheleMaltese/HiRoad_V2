@@ -32,6 +32,7 @@ const FriendSelectScreen = (props) => {
     if (selectedFriend) {
       exportMap(currUser.fullName, mapIndex, selectedFriend.phone);
       Alert.alert('Pending...', `Your map has been shared to ${selectedFriend.name}`);
+      props.navigation.navigate("Home");
     }
   }, [friends, props.route.params.selectedMap]);
 

@@ -4,6 +4,8 @@ import {
     URIs,
     addFriend,
     currUser,
+    updateCurrUser,
+    getUpdatedUser,
     acceptFriendRequest,
     deleteFriendRequest,
     updateUserInfo,
@@ -51,12 +53,23 @@ const AcceptPinsScreen = (props) => {
 
   const handleAcceptPinRequest = useCallback(async (pinRequestId) => {
     let name = pinRequests[parseInt(pinRequestId)].fromName;
-    acceptPin(currUser.email, parseInt(pinRequestId));
+    const res = await acceptPin(currUser.email, parseInt(pinRequestId));
+    const pin = res.data;
+
+    let pins = currUser.socialMap.pins;
+    pins.push(pin);
+  
+    console.log(pin);
+  
+    currUser.socialMap.pins = pins;
+
     deletePinRequest(parseInt(pinRequestId));
-    updateUserInfo();
-    Alert.alert('Pin Request Accepted', `You have accepted the pin request from ${name}. Log back in to see your updated pin list`);
+    await updateUserInfo();
+    Alert.alert('Pin Request Accepted', `You have accepted the pin request from ${name}.`);
 
     setPinRequests(addIdToObjects(currUser.tempObjects.tempPins));
+    updateCurrUser(await getUpdatedUser(currUser.email));
+    props.navigation.goBack();
   }, [pinRequests]);
 
   return (

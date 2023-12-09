@@ -49,12 +49,7 @@ async function exportPin(name, mapIndex, index, msg, friendPhone) {
 
 async function acceptPin(email, index) {
   const pin = await axios.post(URIs[7], {email: email, pin: currUser.tempObjects.tempPins[index]});
-  let pins = user.socialMap.pins;
-  pins.push(pin);
-
-  console.log(pin);
-
-  currUser.socialMap.pins = pins;
+  return pin;
 }
 
 //Sets the currUser object to the passed in data. Used for putting the user's data in currUser, called when logging in
@@ -74,7 +69,7 @@ const getUser = async (email, password) => {
   return returnData;
 };
 
-const getUserResetPassword = async (email) => {
+const getUpdatedUser = async (email) => {
   const userURI = URIs[0] + "/" + email;
   const userData = {
     email: email,
@@ -378,7 +373,7 @@ export { changeUsername };
 export { changeEmail };
 export { changePassword };
 export { updateCurrUser };
-export { getUserResetPassword };
+export { getUpdatedUser };
 export { postUserResetPassword };
 export { addFriend };
 export { acceptFriendRequest };

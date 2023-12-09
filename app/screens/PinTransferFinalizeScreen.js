@@ -43,6 +43,7 @@ function PinTransferFinalizeScreen(props) {
 
         await exportPin(currUser.fullName, mapIndex, pinIndex, msg, friendPhone);
         Alert.alert('Pending...', `Your pin has shared to ${friendPhone}`);
+        props.navigation.navigate("Home");
     };    
 
     return (

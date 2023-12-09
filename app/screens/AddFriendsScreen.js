@@ -36,7 +36,9 @@ const AddFriendsScreen = (props) => {
     console.log(currUser.phone);
     try {
       await addFriend(currUser.fullName, currUser.phone, phoneNumber);
+      setPhoneNumber("");
       Alert.alert("Your friend request has been received!");
+      props.navigation.goBack();
     }
     catch {
       Alert.alert("Friend request could not be sent.");
@@ -50,7 +52,11 @@ const AddFriendsScreen = (props) => {
     <Text style={styles.Header}>{"Enter A Friend's Phone Number!"}</Text>
       <TextInput
         style={styles.input}
-        onChangeText={setPhoneNumber}
+        onChangeText={(text) => {
+          // Allow only numbers and limit to 10 characters
+          const formattedText = text.replace(/[^0-9]/g, '').slice(0, 10);
+          setPhoneNumber(formattedText);
+      }}
         value={phoneNumber}
         placeholder="Enter friend's phone number"
         keyboardType="phone-pad"

@@ -10,6 +10,7 @@ import {
   BackHandler,
 } from "react-native";
 import { currUser } from "../assets/test data/TestUserData";
+import { Icon } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { URIs, changeIconSocial } from "../assets/test data/TestUserData";
 import { HeaderBackButton } from "react-navigation-stack";
@@ -35,12 +36,17 @@ function SelectIconScreenSocial(props) {
     props.navigation.setOptions({
       // Allows user to cancel operation
       headerLeft: () => (
-        <HeaderBackButton onPress={() => cancelIcon(props)} title="Cancel" />
+        <HeaderBackButton title="Back" tintColor="#FCF9F4"onPress={() => cancelIcon(props)}/>
       ),
       //Save Icon
-      headerRight: () => (
-        <Button onPress={() => props.navigation.goBack()} title="SAVE" />
-      ),
+      headerRight: () =>
+          <Icon
+            containerStyle={styles.headerIcon}
+            color="#FCF9F4"
+            type="material"
+            name="save"
+            onPress={() => {props.navigation.goBack();}}
+          />
     });
   }, [props.navigation]);
 

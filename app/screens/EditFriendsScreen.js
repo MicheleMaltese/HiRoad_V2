@@ -24,7 +24,7 @@ const FriendItem = ({ friend, onDelete, onFriendSelect }) => (
 );
 
 const EditFriendsScreen = (props) => {
-  const [friends, setFriends] = useState(currUser.friendsList);
+  const [friends, setFriends] = useState([]);
 
   const addIdToObjects = (array) => {
     return array.map((obj, index) => {
@@ -32,18 +32,27 @@ const EditFriendsScreen = (props) => {
     });
   };
 
+  const updateFriendsList = () => {
+    const updatedFriends = addIdToObjects(currUser.friendsList);
+    setFriends(updatedFriends);
+  };
+
   useEffect(() => {
-    setFriends(currUser.friendsList);
-    setFriends(addIdToObjects(friends));
-  }, []); // Run only once when the component mounts
+    updateFriendsList();
+    const unsubscribe = props.navigation.addListener('focus', () => {
+      updateFriendsList();
+    });
+
+    return unsubscribe;
+  }, []);
 
   const handleDeleteFriend = useCallback((friendId) => {
     deleteFriend(parseInt(friendId));
-    Alert.alert('Delete Friend', 'The friend has been removed from your friend list.');
+    Alert.alert('Deleted Friend', 'The friend has been removed from your friend list.');
 
     updateUserInfo();
-    //const updatedFriends = friends.filter(friend => friend.id !== friendId);
-    setFriends(addIdToObjects(currUser.friendsList));
+    updateFriendsList();
+    props.navigation.goBack();
   }, [friends]);
 
   return (

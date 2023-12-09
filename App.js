@@ -139,8 +139,10 @@ export default class App extends React.Component {
               component={SelectIconScreen}
               options={{
                 title: "",
-                headerTransparent: true,
-                headerTintColor: "#F3E9D9",
+                headerStyle: {
+                  backgroundColor: "#548439",
+                },
+                headerTintColor: "#FCF9F4",
               }}
             />
             <Stack.Screen
@@ -148,8 +150,10 @@ export default class App extends React.Component {
               component={SelectIconScreenSocial}
               options={{
                 title: "",
-                headerTransparent: true,
-                headerTintColor: "#F3E9D9",
+                headerStyle: {
+                  backgroundColor: "#548439",
+                },
+                headerTintColor: "#FCF9F4",
               }}
             />
             <Stack.Screen

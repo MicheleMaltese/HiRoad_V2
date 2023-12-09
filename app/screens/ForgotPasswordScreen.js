@@ -11,7 +11,7 @@ import axios from "axios";
 import validator from "validator";
 import { useNavigation } from "@react-navigation/native"; // Import the navigation hook
 import {
-  getUserResetPassword,
+  getUpdatedUser,
   updateCurrUser,
   currUser,
 } from "../assets/test data/TestUserData.js";
@@ -26,19 +26,19 @@ function ForgotPasswordScreen(props) {
       if (validator.isEmail(email)) {
         try {
         setEmailError("");
-        updateCurrUser(await getUserResetPassword(email));
+        updateCurrUser(await getUpdatedUser(email));
         Alert.alert(
-          "Password Reset",
-          "A five digit password reset code has been sent to your email."
+          "Password Reset Pending...",
+          "Password emailing not yet available."
         );
         // Navigate to the "EnterCodeScreen" when the email is valid
-        props.navigation.navigate("EnterCode");
+        //props.navigation.navigate("EnterCode");
         }
         catch {
-          setEmailError("Email address not found");
+          setEmailError("Email address not found.");
         }
       } else {
-        setEmailError("Please enter a valid email address");
+        setEmailError("Please enter a valid email address.");
       }
     } catch (error) {
       Alert.alert(error);
@@ -82,13 +82,14 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir-Black", // Updated font
   },
   invalidInputStyle: {
-        backgroundColor: "#F7D1B6",
-        borderColor: "#E77728",
-        borderWidth: 2,
-        borderRadius: 5,
-        padding: 8,
-        fontFamily: "Avenir-Roman",
-  },
+    color: "#ffffff",
+    fontFamily: "Avenir-Black",
+    fontSize: 15,
+    alignSelf: "center",
+    backgroundColor: "#E77728",
+    paddingLeft: 10,
+    paddingRight: 10,
+},
   input: {
     width: "100%",
     padding: 10,

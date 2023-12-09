@@ -85,7 +85,7 @@ const handleRegister = async (
         }
         //Checking if password is at least 8 character
         if (!validate_password(password)) {
-            passwordError = "Password must be at least 8 characters, contain an uppercase character, lowercase character, and a number.";
+            passwordError = "Password must contain 8 characters, an uppercase letter, lowercase letter, and number.";
         } else {
             passwordError = "";
             passwordValid = true;
@@ -442,7 +442,7 @@ function RegisterScreen(props) {
                                     setPassword(text);
                                     if (!validate_password(text)) {
                                         setPasswordErrorMsg(
-                                            "Password must be at least 8 characters, contain an uppercase character, lowercase character, and a number."
+                                            "Password must contain 8 characters, an uppercase letter, lowercase letter, and number."
                                         );
                                         setPasswordInputStyle(
                                             invalidInputStyle
@@ -617,7 +617,7 @@ function RegisterScreen(props) {
                                     setPassword("");
                                     setConfPassword("");
                                     setPasswordErrorMsg(
-                                        "Password must be at least 8 characters."
+                                        "Password must contain 8 characters, an uppercase letter, lowercase letter, and number."
                                     );
                                     setConfPasswordErrorMsg(
                                         "Passwords must match."

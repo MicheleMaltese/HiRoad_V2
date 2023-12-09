@@ -48,6 +48,7 @@ const SystemHelpPopUpRow = (props) => (
             }}
         >
             <Text
+                allowFontScaling={false}
                 style={[
                     styles.systemText,
                     { alignSelf: "flex-start", fontWeight: "bold" },
@@ -55,7 +56,7 @@ const SystemHelpPopUpRow = (props) => (
             >
                 {props.buttonLabel}
             </Text>
-            <Text style={[styles.systemText, { alignSelf: "flex-start" }]}>
+            <Text allowFontScaling={false} style={[styles.systemText, { alignSelf: "flex-start" }]}>
                 {props.buttonExplainer}
             </Text>
         </View>
@@ -73,12 +74,12 @@ const SystemPopupWithIconRows = (props) =>
             />
             <SystemHelpPopUpRow
                 iconName="add-location"
-                buttonLabel="Create or Edit a Pin"
+                buttonLabel="Create Or Edit A Pin"
                 buttonExplainer="Press this button then tap on the map to place a pin."
             />
             <SystemHelpPopUpRow
                 iconName="edit-road"
-                buttonLabel="Draw a route"
+                buttonLabel="Draw A Route"
                 buttonExplainer="Press this button then draw on the map to create a route."
             />
         </View>
@@ -87,18 +88,18 @@ const SystemPopupWithIconRows = (props) =>
             <SystemHelpPopUpRow
                 iconName="edit"
                 buttonLabel="Edit Button"
-                buttonExplainer="Create and edit pins and routes"
+                buttonExplainer="Create and edit pins and routes."
             />
             <SystemHelpPopUpRow
                 iconName="map"
                 buttonLabel="Location"
-                buttonExplainer="Centers to the map's starting location"
+                buttonExplainer="Centers to the map's starting location."
             />
             
              <SystemHelpPopUpRow
                 iconName="warning"
                 buttonLabel= "Warning"
-                buttonExplainer="Make sure you are fully zoomed in for the most accurate pin placement"
+                buttonExplainer="Make sure you are fully zoomed in for the most accurate pin placement."
             />
            
         </View>
@@ -712,7 +713,7 @@ function SocialMapScreen(props) {
                     style={[
                         styles.floatBox,
                         helpPopupVisible
-                            ? { height: "30%" }
+                            ? { height: "35%" }
                             : { height: "10%" },
                     ]}
                 >
@@ -723,17 +724,17 @@ function SocialMapScreen(props) {
                     ) : null}
                     {pinState && editMode ? (
                         <View style={styles.systemMessage}>
-                            <Text style={styles.systemText}>
+                            <Text allowFontScaling={false} style={styles.systemText}>
                                 Press anywhere to add a pin to the map.
                             </Text>
-                            <Text style={styles.systemText}>
+                            <Text allowFontScaling={false} style={styles.systemText}>
                                 Tap on a pin to edit it.
                             </Text>
                         </View>
                     ) : null}
                     {routeState && editMode ? (
                         <View style={styles.systemMessage}>
-                            <Text style={styles.systemText}>
+                            <Text allowFontScaling={false} style={styles.systemText}>
                                 Draw on the screen to place a route on the map.
                             </Text>
                         </View>
@@ -774,7 +775,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     systemMessage: {
-        flex: 0.6,
+        flex: 1,
         flexShrink: 0.8,
         // height: "100%",
         backgroundColor: "#6C3A2C",
@@ -836,6 +837,7 @@ const styles = StyleSheet.create({
     systemText: {
         alignSelf: "center",
         color: "#F3E9D9",
+        fontSize: 12
     },
     editButton: {
         padding: 8,
