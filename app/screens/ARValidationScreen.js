@@ -8,6 +8,7 @@ import {
   TextInput,
   View,
   Dimensions,
+  Linking,
   Button,
   ScrollView,
   Alert,
@@ -135,8 +136,16 @@ const ARValidationScreen = (props) => {
             <View style={{ flexDirection: "row" }} key={index}>
               <Pressable
                 style= {styles.mapButton}
+                onPress={async () => {
+                  try {
+                      let url = 'https://what3words.com/' + item;
+                      await Linking.openURL(url);
+                  } catch(err) {
+                    console.log(err);
+                  }
+              }}
               >
-                <Text style={styles.mapButtonText}>{item}</Text>
+                <Text allowFontScaling={false} style={styles.mapButtonText}>{item}</Text>
               </Pressable>
             </View>
           ))}
@@ -151,7 +160,7 @@ const ARValidationScreen = (props) => {
             });*/
             }}
         >
-            <Text style={styles.createMapButtonText}>I am at one of these addresses</Text>
+            <Text style={styles.createMapButtonText}>{'I am at one of' + '\n' + 'these addresses'}</Text>
         </Pressable>
       </SafeAreaView>
     </>

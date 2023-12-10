@@ -161,7 +161,7 @@ function AccountSettingsScreen(props) {
                     <View style={styles.centeredView}>
                         <View style={styles.helpModal}>
                             <View style={styles.helpModalHeaderView}>
-                                <Text style={styles.helpModalTitle}>
+                                <Text allowFontScaling={false} style={styles.helpModalTitle}>
                                     How can we help you?
                                 </Text>
                             </View>
@@ -186,7 +186,7 @@ function AccountSettingsScreen(props) {
                                         type="material"
                                         name="report-problem"
                                     />
-                                    <Text style={styles.helpModalText}>
+                                    <Text allowFontScaling={false} style={styles.helpModalText}>
                                         Report a problem
                                     </Text>
                                 </View>
@@ -212,7 +212,7 @@ function AccountSettingsScreen(props) {
                                         type="material"
                                         name="campaign"
                                     />
-                                    <Text style={styles.helpModalText}>
+                                    <Text allowFontScaling={false} style={styles.helpModalText}>
                                         Suggest an improvement
                                     </Text>
                                 </View>
@@ -238,7 +238,7 @@ function AccountSettingsScreen(props) {
                                         type="material"
                                         name="help"
                                     />
-                                    <Text style={styles.helpModalText}>
+                                    <Text allowFontScaling={false} style={styles.helpModalText}>
                                         Ask a question
                                     </Text>
                                 </View>
@@ -252,7 +252,7 @@ function AccountSettingsScreen(props) {
                                 }}
                             >
                                 <View style={styles.modalCancelView}>
-                                    <Text style={styles.helpModalText}>
+                                    <Text allowFontScaling={false} style={styles.helpModalText}>
                                         Cancel
                                     </Text>
                                 </View>
@@ -266,7 +266,7 @@ function AccountSettingsScreen(props) {
                             <Text style={styles.inputLabel}>Name</Text>
                             <Icon
                                 style={{ alignSelf: "flex-end" }}
-                                color={nameEditable ? "#008EC2" : "#548439"}
+                                color={nameEditable ? "#6C3A2C" : "#548439"}
                                 type="material"
                                 name="edit"
                                 onPress={() => {
@@ -296,7 +296,7 @@ function AccountSettingsScreen(props) {
                             <Text style={styles.inputLabel}>Full Name</Text>
                             <Icon
                                 style={{ alignSelf: "flex-end" }}
-                                color={fullNameEditable ? "#008EC2" : "#548439"}
+                                color={fullNameEditable ? "#6C3A2C" : "#548439"}
                                 type="material"
                                 name="edit"
                                 onPress={() => {
@@ -326,7 +326,7 @@ function AccountSettingsScreen(props) {
                             <Text style={styles.inputLabel}>Phone</Text>
                             <Icon
                                 style={{ alignSelf: "flex-end" }}
-                                color={phoneEditable ? "#008EC2" : "#548439"}
+                                color={phoneEditable ? "#6C3A2C" : "#548439"}
                                 type="material"
                                 name="edit"
                                 onPress={() => {
@@ -362,7 +362,7 @@ function AccountSettingsScreen(props) {
                             <Text style={styles.inputLabel}>Email</Text>
                             <Icon
                                 style={{ alignSelf: "flex-end" }}
-                                color={emailEditable ? "#008EC2" : "#548439"}
+                                color={emailEditable ? "#6C3A2C" : "#548439"}
                                 type="material"
                                 name="edit"
                                 onPress={() => {
@@ -394,7 +394,7 @@ function AccountSettingsScreen(props) {
                             <Text style={styles.inputLabel}>New Password</Text>
                             <Icon
                                 style={{ alignSelf: "flex-end" }}
-                                color={passwordEditable ? "#008EC2" : "#548439"}
+                                color={passwordEditable ? "#6C3A2C" : "#548439"}
                                 type="material"
                                 name="edit"
                                 onPress={() => {
@@ -439,7 +439,7 @@ function AccountSettingsScreen(props) {
                                     editMode
                                         ? [
                                               styles.input,
-                                              { borderColor: "#008EC2" },
+                                              { borderColor: "#548439" },
                                           ]
                                         : styles.hiddenInput
                                 }
@@ -454,21 +454,17 @@ function AccountSettingsScreen(props) {
                         </View>
                     ) : null}
                     <View style={styles.itemContainer}>
+                        {nameEditable ||
+                        emailEditable ||
+                        passwordEditable ?
                         <Pressable
-                            style={[
-                                styles.saveButton,
-                                nameEditable ||
-                                emailEditable ||
-                                passwordEditable
-                                    ? { backgroundColor: "#008EC2" }
-                                    : { backgroundColor: "#548439" },
-                            ]}
+                            style={styles.saveButton}
                             onPress={async () => {
                                 await saveChanges(currUser.email, password);
                             }}
                         >
                             <Text style={styles.saveButtonText}>SAVE</Text>
-                        </Pressable>
+                        </Pressable> : null}
                     </View>
                 </View>
                 <View
@@ -543,13 +539,13 @@ const styles = StyleSheet.create({
     passwordWarning: {
         fontFamily: "Avenir-Heavy",
         fontSize: 15,
-        color: "#008EC2",
+        color: "#548439",
         textAlign: "center",
         marginTop: "1.5%",
     },
     existingPasswordInputLabel: {
         fontFamily: "Avenir-Roman",
-        color: "#008EC2",
+        color: "#548439",
         fontSize: 18,
         alignSelf: "flex-start",
     },
@@ -642,6 +638,7 @@ const styles = StyleSheet.create({
     saveButton: {
         padding: 15,
         width: "100%",
+        backgroundColor: "#548439",
         // flex: 0.08,
         alignSelf: "center",
         justifyContent: "center",

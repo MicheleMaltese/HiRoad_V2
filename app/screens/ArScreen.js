@@ -82,7 +82,7 @@ function ArScreen(props) {
             onPress={() => props.navigation.navigate("Augmented Reality Validation")}
             style={styles.redirectButton}
           >
-            <Text style={styles.redirectButtonText}>Head Back</Text>
+            <Text style={styles.redirectButtonText}>Close</Text>
           </Pressable>
           <Pressable
             style={styles.redirectButton}

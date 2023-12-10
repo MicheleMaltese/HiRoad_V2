@@ -93,7 +93,7 @@ const SystemPopupWithIconRows = (props) =>
             <SystemHelpPopUpRow
                 iconName="map"
                 buttonLabel="Location"
-                buttonExplainer="Centers to the map's starting location."
+                buttonExplainer="Centers to the maps starting location."
             />
             
              <SystemHelpPopUpRow

@@ -32,9 +32,13 @@ function ForgotPasswordScreen(props) {
           "Password emailing not yet available."
         );
         // Navigate to the "EnterCodeScreen" when the email is valid
-        //props.navigation.navigate("EnterCode");
+        console.log(email);
+        props.navigation.navigate("EnterCode", {
+          email: email,
+        });
         }
-        catch {
+        catch(err) {
+          console.log(err);
           setEmailError("Email address not found.");
         }
       } else {

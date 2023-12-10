@@ -8,10 +8,13 @@ function EnterCodeScreen(props) {
   const handleSubmit = () => {
     // Replace this logic with your code verification logic.
     // For example, you can check if the entered code matches the expected code.
-    const expectedCode = ''; // Replace with your expected code
+    const expectedCode = 'MyJesus-3322!'; // Replace with your expected code
     if (code === expectedCode && code !== '') {
+      console.log(props.route.params.email);
       // Correct code, navigate to EnterNewPasswordScreen
-      props.navigation.navigate("EnterNewPassword");
+      props.navigation.navigate("EnterNewPassword", {
+        email: props.route.params.email
+      });
     } else {
       // Incorrect code, show an error or handle it as needed
       // You can display an error message to the user
@@ -21,7 +24,7 @@ function EnterCodeScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Enter Your Password Reset Code</Text>
+      <Text allowFontScaling={false} style={styles.title}>Enter Your Admin Password Reset Code</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter the code"
@@ -53,13 +56,14 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir-Black", // Updated font
   },
   invalidInputStyle: {
-        backgroundColor: "#F7D1B6",
-        borderColor: "#E77728",
-        borderWidth: 2,
-        borderRadius: 5,
-        padding: 8,
-        fontFamily: "Avenir-Roman",
-  },
+    color: "#ffffff",
+    fontFamily: "Avenir-Black",
+    fontSize: 15,
+    alignSelf: "center",
+    backgroundColor: "#E77728",
+    paddingLeft: 10,
+    paddingRight: 10,
+},
   input: {
     width: "100%",
     padding: 10,

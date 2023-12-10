@@ -11,6 +11,8 @@ import axios from "axios";
 import {
     URIs,
     currUser,
+    getUpdatedUser,
+    resetPassword,
     updateUserInfo,
     getUser,
     updateCurrUser,
@@ -23,8 +25,31 @@ function EnterNewPasswordScreen(props) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
+  const [confPasswordError, setConfPasswordError] = useState("");
+  const [passwordInputStyle, setPasswordInputStyle] = useState(validInputStyle);
+  const [confPasswordInputStyle, setConfPasswordInputStyle] = useState(validInputStyle);
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
   const ref_confirmInput = useRef();
+
+  const invalidInputStyle = {
+    color: "#ffffff",
+    fontFamily: "Avenir-Black",
+    fontSize: 15,
+    alignSelf: "center",
+    backgroundColor: "#E77728",
+    paddingLeft: 10,
+    paddingRight: 10,
+  };
+  // Text Input styling of box with valid input
+  const validInputStyle = {
+    backgroundColor: "#ffffff",
+    borderColor: "#6C3A2C",
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 8,
+    fontFamily: "Avenir-Roman",
+    color: "#6C3A2C",
+  };
 
   function validate_password(password) {
   let check = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
@@ -39,23 +64,30 @@ function EnterNewPasswordScreen(props) {
     try {
       if (validate_password(password)) {
         if (password !== confirmPassword) {
-          setPasswordError("Passwords don't match");
+          setConfPasswordError("Passwords don't match.");
         }
         else {
         setPasswordError("");
 
-        changePassword(password);
         //Alert.alert(currUser);
-        await (postUserResetPassword(currUser.email))
+        await (getUpdatedUser(currUser.email))
         Alert.alert(
           "Password Reset",
           "Your password has been successfully reset."
         );
-        // Navigate to the desired screen after resetting the password
-        props.navigation.navigate("Login");
+
+        try {
+          console.log(props.email);
+          console.log(password);
+          await resetPassword(props.route.params.email, password);
+          props.navigation.navigate("Login");
+        }
+        catch (err) {
+          console.log(err);
+        }
         }
       } else {
-        setPasswordError("Password must be at least 8 characters, contain an uppercase character, lowercase character, and a number");
+        setPasswordError("Password must contain 8 characters, an uppercase letter, lowercase letter, and number.");
       }
     } catch (error) {
       Alert.alert(error);
@@ -68,7 +100,20 @@ function EnterNewPasswordScreen(props) {
       <TextInput
         style={[styles.input, passwordError ? styles.errorInput : null]}
         placeholder="Enter your new password"
-        onChangeText={(text) => setPassword(text)}
+        onChangeText={(text) => {
+          setPassword(text);
+          if (!validate_password(text)) {
+              setPasswordError(
+                  "Password must contain 8 characters, an uppercase letter, lowercase letter, and number."
+              );
+              setPasswordInputStyle(
+                  invalidInputStyle
+              );
+          } else {
+              setPasswordError("");
+              setPasswordInputStyle(validInputStyle);
+          }
+      }}
         value={password}
         secureTextEntry={true}
         returnKeyType="next"
@@ -76,6 +121,16 @@ function EnterNewPasswordScreen(props) {
             ref_confirmInput.current.focus();
         }}
       />
+      {passwordError ? (
+        <Text style={styles.errorText}>{passwordError}</Text>
+      ) : null}   
+      <Text
+        style={styles.inputLabel}
+        maxFontSizeMultiplier={1.75}
+        allowFontScaling={false}
+      >
+        Confirm your password
+      </Text>
       <TextInput
           style={[styles.input, passwordError ? styles.errorInput : null]}
           ref={ref_confirmInput}
@@ -86,13 +141,35 @@ function EnterNewPasswordScreen(props) {
           multiline={false}
           autoCorrect={false}
           onChangeText={(text) => {
-              setConfirmPassword(text);
-              }
-          }
-      />
-      {passwordError ? (
-        <Text style={styles.invalidInputStyle}>{passwordError}</Text>
-      ) : null}      
+            // Handles conditional formatting of Text Input
+            // Reverts to normal once text matches
+            setConfirmPassword(text);
+            if (text == password) {
+                setPasswordsMatch(true);
+                // Set style of input to normal text input style
+                if (
+                    confPasswordInputStyle !=
+                    validInputStyle
+                ) {
+                    setConfPasswordError("");
+                    setConfPasswordInputStyle(
+                        validInputStyle
+                    );
+                }
+            } else {
+                setPasswordsMatch(false);
+                setConfPasswordError(
+                    "Passwords don't match."
+                );
+                setConfPasswordInputStyle(
+                    invalidInputStyle
+                );
+            }
+        }}
+      />   
+      {confPasswordError ? (
+        <Text style={styles.errorText}>{confPasswordError}</Text>
+      ) : null}  
       <Pressable
         style={styles.submitButton}
         onPress={handleResetPassword}
@@ -111,19 +188,27 @@ const styles = StyleSheet.create({
     backgroundColor: "#FCF9F4", // Updated background color
     padding: 20,
   },
+  errorText: {
+    color: "#ffffff",
+    fontFamily: "Avenir-Black",
+    fontSize: 15,
+    alignSelf: "center",
+    backgroundColor: "#E77728",
+    paddingLeft: 12,
+    paddingRight: 12,
+},
+  inputLabel: {
+    fontFamily: "Avenir-Heavy",
+    color: "#6C3A2C",
+    fontSize: 20,
+    marginTop: 30,
+    textAlign: "left"
+},
   title: {
     fontSize: 48, // Updated font size
     color: "#6C3A2C", // Updated text color
     marginBottom: 20,
     fontFamily: "Avenir-Black", // Updated font
-  },
-  invalidInputStyle: {
-        backgroundColor: "#F7D1B6",
-        borderColor: "#E77728",
-        borderWidth: 2,
-        borderRadius: 5,
-        padding: 8,
-        fontFamily: "Avenir-Roman",
   },
   input: {
     width: "100%",
@@ -139,7 +224,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#6C3A2C", // Updated background color
     padding: 14, // Updated padding
     borderRadius: 10, // Updated border radius
-    marginTop: 6
+    marginTop: 30
   },
   submitButtonText: {
     color: "#FCF9F4",

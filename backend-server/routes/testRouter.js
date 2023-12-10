@@ -175,7 +175,7 @@ router.post("/addfriend", (req, res) => {
         el.phone == friend_request.phone
       });
 
-    if (requestExists.length != 0 || friendExists.length != 0) {
+    if (requestExists.length != 0 || friendExists.length != 0 || friend_phone == user_phone) {
       console.log("Friend already requested/added")
     }
     else {
@@ -314,6 +314,77 @@ router.post("/exportpin", (req, res) => {
   });
 });
 
+router.post("/friendaccepted", (req, res) => {
+  console.log("Friend acceptance attempted");
+  const body = req.body;
+  const user_phone = body.user_phone;
+  const name = body.name;
+  const phone = body.phone;
+
+    if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide a body to update",
+    });
+  }
+
+  console.log(user_phone);
+  console.log(name);
+  console.log(phone);
+
+  let acceptedRequest = {
+    "name": name,
+    "phone": phone,
+  };
+
+  console.log(acceptedRequest);
+
+  UserModel.findOne({ phone: user_phone }, (err, user) => {
+    if (err || user == null) {
+      return res.status(404).json({
+        err,
+        message: "User not found!",
+      });
+    }
+
+    let fr = user.friendsList;
+
+    const friendExists = fr.filter(function (el) {
+      return el.name == acceptedRequest.name &&
+        el.phone == acceptedRequest.phone
+      });
+
+    if (friendExists.length != 0) {
+      console.log("Friend already accepted")
+    }
+    else {
+      let fr = user.friendsList;
+      fr.push(acceptedRequest);
+
+      user.socialMap.friendsList = fr;
+    }
+
+    console.log(user.friendsList);
+
+    user
+      .save()
+      .then(() => {
+        return res.status(200).json({
+          success: true,
+          id: user._id,
+          message: "Friend requesting complete!",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        return res.status(404).json({
+          error,
+          message: "Pin transfer failed",
+        });
+      });
+  });
+})
+
 router.post("/acceptpin", async(req, res) => {
   console.log("Pin transfer attempted");
   const body = req.body;
@@ -366,6 +437,51 @@ router.post("/acceptpin", async(req, res) => {
         return res.status(404).json({
           error,
           message: "Pin transfer failed",
+        });
+      });
+  });
+});
+
+router.post("/resetpassword", (req, res) => {
+  console.log("Password reset being attempted");
+  const body = req.body;
+  const user_email = body.email;
+  const user_password = body.password;
+  console.log(body.email);
+  console.log(body.password);
+
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide a body to update",
+    });
+  }
+
+  UserModel.findOne({ email: user_email }, (err, user) => {
+    if (err) {
+      return res.status(404).json({
+        err,
+        message: "User not found!",
+      });
+    }
+
+    user.password = user_password;
+    console.log(user);
+
+    user
+      .save()
+      .then(() => {
+        return res.status(200).json({
+          success: true,
+          id: user._id,
+          message: "User updated!",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        return res.status(404).json({
+          error,
+          message: "User not updated",
         });
       });
   });

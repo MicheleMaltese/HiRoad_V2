@@ -86,8 +86,10 @@ export default class App extends React.Component {
               component={EnterNewPasswordScreen}
               options={{
                 title: "",
-                headerTransparent: true,
-                headerTintColor: "#FDFAF5",
+                headerStyle: {
+                  backgroundColor: "#FCF9F4",
+                },
+                headerTintColor: "#6C3A2C",
               }}
             />
             <Stack.Screen

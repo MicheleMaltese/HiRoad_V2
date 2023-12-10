@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     linkText: {
         fontFamily: "Avenir-Heavy",
-        color: "#008EC2",
+        color: "#548439",
     },
 });
 

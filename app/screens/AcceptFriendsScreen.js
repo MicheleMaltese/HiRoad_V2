@@ -8,6 +8,7 @@ import {
     deleteFriendRequest,
     updateUserInfo,
     getUser,
+    friendAcceptOtherUser,
     updateCurrUser,
     getUpdatedUser,
     changeUsername,
@@ -58,6 +59,10 @@ const AcceptFriendsScreen = (props) => {
 
   const handleAcceptFriendRequest = useCallback(async (friendRequestId) => {
     let name = friendRequests[parseInt(friendRequestId)].name;
+    let phone = friendRequests[parseInt(friendRequestId)].phone;
+    let tempRequest = currUser.tempObjects.friendRequests[parseInt(friendRequestId)];
+    await friendAcceptOtherUser(phone, currUser.fullName, currUser.phone);
+
     acceptFriendRequest(parseInt(friendRequestId));
     deleteFriendRequest(parseInt(friendRequestId));
     Alert.alert('Friend Request Accepted', `You have accepted the friend request from ${name}.`);
