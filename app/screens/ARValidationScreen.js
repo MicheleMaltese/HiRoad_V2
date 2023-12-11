@@ -27,6 +27,8 @@ const ARValidationScreen = (props) => {
   const [messages, setMessages] = useState([]);
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
+  const [msg, setMsg] = useState("When you arrive at the destination, come back to HiRoad Social to retrieve your message.");
+  const [showMsg, setShowMsg] = useState(false);
 
   function distanceInFeet(lat1, lon1, lat2, lon2) {
         var R = 6371; // Radius of the earth in km
@@ -124,7 +126,7 @@ const ARValidationScreen = (props) => {
           allowFontScaling={false}
           adjustsFontSizeToFit={true}
         >
-          {"To view a secret message in augmented reality: make sure you are within 50 feet of any of the following What3Words addresses"}
+          {"To view a secret message\nin augmented reality,\nmake sure you are within\n50 feet of any of the following What3Words addresses."}
         </Text>
 
         {/* List of shared addresses */}
@@ -140,6 +142,7 @@ const ARValidationScreen = (props) => {
                   try {
                       let url = 'https://what3words.com/' + item;
                       await Linking.openURL(url);
+                      setShowMsg(true);
                   } catch(err) {
                     console.log(err);
                   }
@@ -150,6 +153,7 @@ const ARValidationScreen = (props) => {
             </View>
           ))}
         </ScrollView>
+        <Text allowFontScaling={false} style={styles.msgStyle}>{msg}</Text>
         <Pressable
             style={styles.socialMapButton}
             onPress={() => {
@@ -182,12 +186,22 @@ const styles = StyleSheet.create({
     marginHorizontal: "2%",
     width: Dimensions.get("window").width * 0.9,
   },
+  msgStyle: {
+    color: "#6C3A2C",
+    fontFamily: "Avenir-Black",
+    fontSize: 15,
+    textAlign: "center",
+    alignSelf: "center",
+    //Color: "#E77728",
+    paddingLeft: 10,
+    paddingRight: 10,
+},
   scrollViewContent: {
     alignItems: "center",
     justifyContent: "flex-start",
   },
   mapHeader: {
-    fontSize: 24,
+    fontSize: 20,
     color: "#6C3A2C",
     fontFamily: "Avenir-Black",
     padding: 10,

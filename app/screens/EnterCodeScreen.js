@@ -8,7 +8,7 @@ function EnterCodeScreen(props) {
   const handleSubmit = () => {
     // Replace this logic with your code verification logic.
     // For example, you can check if the entered code matches the expected code.
-    const expectedCode = 'MyJesus-3322!'; // Replace with your expected code
+    const expectedCode = ''; // Replace with your expected code
     if (code === expectedCode && code !== '') {
       console.log(props.route.params.email);
       // Correct code, navigate to EnterNewPasswordScreen
@@ -24,7 +24,7 @@ function EnterCodeScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Text allowFontScaling={false} style={styles.title}>Enter Your Admin Password Reset Code</Text>
+      <Text allowFontScaling={false} style={styles.title}>When The Admin Responds, Enter The Code Recevied In Your Email</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter the code"
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 36, // Updated font size
+    fontSize: 32, // Updated font size
     color: "#6C3A2C", // Updated text color
     marginBottom: 20,
     fontFamily: "Avenir-Black", // Updated font

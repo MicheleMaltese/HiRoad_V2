@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   pinHeader: {
-    fontSize: 38,
+    fontSize: 32,
     color: "#6C3A2C",
     fontFamily: "Avenir-Black",
     padding: 10,

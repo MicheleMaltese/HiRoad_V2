@@ -171,7 +171,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   mapHeader: {
-    fontSize: 38,
+    fontSize: 32,
+    marginTop: 12,
     color: "#6C3A2C",
     fontFamily: "Avenir-Black",
     padding: 10,

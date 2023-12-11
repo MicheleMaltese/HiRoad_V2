@@ -3,6 +3,7 @@ import {
   View,
   Text,
   TextInput,
+  Linking,
   Pressable,
   Alert,
   StyleSheet,
@@ -23,14 +24,17 @@ function ForgotPasswordScreen(props) {
 
   const handleForgotPassword = async () => {
     try {
+      await Linking.openURL(
+          "mailto:" +
+              "hiroadsocial@gmail.com" 
+      );
+  } catch {}
+  };
+    /*try {
       if (validator.isEmail(email)) {
         try {
         setEmailError("");
         updateCurrUser(await getUpdatedUser(email));
-        Alert.alert(
-          "Password Reset Pending...",
-          "Password emailing not yet available."
-        );
         // Navigate to the "EnterCodeScreen" when the email is valid
         console.log(email);
         props.navigation.navigate("EnterCode", {
@@ -47,25 +51,26 @@ function ForgotPasswordScreen(props) {
     } catch (error) {
       Alert.alert(error);
     }
-  };
+  };*/
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Forgot Your Password?</Text>
-      <TextInput
+      <Text style={styles.title}>Contact Admin</Text>
+      {/*<TextInput
         style={[styles.input, emailError ? styles.errorInput : null]}
-        placeholder="Enter your email"
+        placeholder="Enter your email here"
+        placeholderTextColor="#000" 
         onChangeText={(text) => setEmail(text)}
         value={email}
       />
       {emailError ? (
         <Text style={styles.invalidInputStyle}>{emailError}</Text>
-      ) : null}
+      ) : null}*/}
       <Pressable
         style={[styles.submitButton, { backgroundColor: "#6C3A2C" }]}
         onPress={handleForgotPassword}
       >
-        <Text style={[styles.submitButtonText, { color: "#FCF9F4" }]}>Submit</Text>
+        <Text style={[styles.submitButtonText, { color: "#FCF9F4" }]}>Send An Email With Your Request</Text>
       </Pressable>
     </View>
   );
@@ -80,7 +85,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 36, // Updated font size
+    fontSize: 32, // Updated font size
     color: "#6C3A2C", // Updated text color
     marginBottom: 20,
     fontFamily: "Avenir-Black", // Updated font

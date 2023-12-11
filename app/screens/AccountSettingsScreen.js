@@ -422,7 +422,7 @@ function AccountSettingsScreen(props) {
                             returnKeyType="done"
                         />
                         {passwordEditable ? (
-                            <Text style={styles.passwordWarning}>
+                            <Text allowFontScaling={false} style={styles.passwordWarning}>
                                 Password must be at least 8 characters.
                             </Text>
                         ) : null}
@@ -430,8 +430,8 @@ function AccountSettingsScreen(props) {
                     {nameEditable || fullNameEditable || phoneEditable || emailEditable || passwordEditable ? (
                         <View style={styles.existingPasswordContainer}>
                             <View style={styles.labelContainer}>
-                                <Text style={styles.existingPasswordInputLabel}>
-                                    Enter current password to save changes
+                                <Text allowFontScaling={false} style={styles.existingPasswordInputLabel}>
+                                    Enter current password to save changes.
                                 </Text>
                             </View>
                             <TextInput

@@ -59,9 +59,10 @@ const styles = StyleSheet.create({
         flex: 0.3,
     },
     loginButton: {
-        margin: "15%",
+        margin: "10%",
         width: "80%",
         flex: 0.1,
+        marginTop: 120,
         backgroundColor: "#6C3A2C",
         justifyContent: "center",
         borderRadius: 10,
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
     registerButton: {
         width: "80%",
         flex: 0.1,
+        marginTop: 0,
         backgroundColor: "#548439",
         justifyContent: "center",
         borderRadius: 10,

@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     paddingBottom: "8%",
   },
   loginHeader: {
-    fontSize: 48,
+    fontSize: 40,
     color: "#6C3A2C",
     fontFamily: "Avenir-Black",
   },
