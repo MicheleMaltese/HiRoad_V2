@@ -585,4 +585,19 @@ router.get("/user/:email", (req, res) => {
   });
 });
 
+router.post("/deleteaccount", (req, res) => {
+  console.log("User deletion being attempted");
+  const body = req.body;
+  const email = body.email;
+
+  UserModel.deleteOne({ email: email }, (err, user) => {
+    console.log("User deleted");
+    if (err) {
+      console.log("first err");
+      return res.status(400).send("First err");
+    }
+    return res.status(200).send("deleted");
+  });
+});
+
 module.exports = router;

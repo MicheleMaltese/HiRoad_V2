@@ -27,6 +27,7 @@ import SelectPinExportScreen from "./app/screens/SelectPinExportScreen";
 import FriendSelectScreenPin from "./app/screens/PinForFriendScreen";
 import PinTransferFinalizeScreen from "./app/screens/PinTransferFinalizeScreen";
 import CreateRouteScreenSocial from "./app/screens/CreateRouteScreenSocial";
+import DeletionScreen from "./app/screens/AccountDeletionScreen";
 import ArScreen from "./app/screens/ArScreen";
 
 const Stack = createNativeStackNavigator();
@@ -48,6 +49,18 @@ export default class App extends React.Component {
             <Stack.Screen
               name="Login"
               component={LoginScreen}
+              options={{
+                title: "",
+                headerTransparent: true,
+                headerStyle: {
+                  backgroundColor: "#FCF9F4",
+                },
+                headerTintColor: "#6C3A2C",
+              }}
+            />
+            <Stack.Screen
+              name="Delete Account"
+              component={DeletionScreen}
               options={{
                 title: "",
                 headerTransparent: true,

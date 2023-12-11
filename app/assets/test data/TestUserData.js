@@ -29,7 +29,8 @@ let currUser = {};
    "https://hiroad2023-065fd7f0e007.herokuapp.com/api/exportpin",
    "https://hiroad2023-065fd7f0e007.herokuapp.com/api/acceptpin",
    "https://hiroad2023-065fd7f0e007.herokuapp.com/api/friendaccepted",
-   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/resetpassword"
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/resetpassword",
+   "https://hiroad2023-065fd7f0e007.herokuapp.com/api/deleteaccount"
  ];
 
 //Pushes the current currUser object to the database. Overwrites the existing data with the data in this object.
@@ -51,6 +52,10 @@ async function addFriend(name, phone, friendPhone) {
 
 async function exportMap(name, index, friendPhone) {
   await axios.post(URIs[5], {user_name: name, map: currUser.maps[index], friend_phone: friendPhone });
+}
+
+async function deleteUser(email) {
+  await axios.post(URIs[10], {email: email});
 }
 
 async function exportPin(name, mapIndex, index, msg, friendPhone) {
@@ -349,6 +354,7 @@ function changeAddressSocial(object) {
   currUser.socialMap.address = object;
 }
 
+export { deleteUser };
 export { friendAcceptOtherUser };
 export { resetPassword };
 export { addPin };

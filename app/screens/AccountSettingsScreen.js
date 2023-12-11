@@ -464,7 +464,15 @@ function AccountSettingsScreen(props) {
                             }}
                         >
                             <Text style={styles.saveButtonText}>SAVE</Text>
-                        </Pressable> : null}
+                        </Pressable> : 
+                        <Pressable
+                        style={styles.saveButton}
+                        onPress={async () => {
+                            props.navigation.navigate("Delete Account")
+                        }}
+                    >
+                        <Text style={styles.saveButtonText}>DELETE ACCOUNT</Text>
+                    </Pressable>}
                     </View>
                 </View>
                 <View
